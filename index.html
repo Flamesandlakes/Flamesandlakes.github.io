@@ -1,132 +1,154 @@
 <!DOCTYPE html>
-
-<!-- This layout is in essence a CV -->
-
 <html>
 <head>
 <title>W3.CSS Template</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <style>
-html,body,h1,h2,h3,h4,h5,h6 {font-family: "Helvetica", sans-serif}
+body,h1,h2,h3,h4,h5, h6, h7 {font-family: "Helvetica", sans-serif}
 </style>
 </head>
 <body class="w3-light-grey">
 
-<!-- Page Container -->
-<div class="w3-content w3-margin-top" style="max-width:1400px;">
+<!-- w3-content defines a container for fixed size centered content, 
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content" style="max-width:1400px">
 
-  <!-- The Grid -->
-  <div class="w3-row-padding">
-  
-    <!-- Left Column -->
-    <div class="w3-third">
-    
-      <div class="w3-white w3-text-grey w3-card-4">
-        <div class="w3-display-container">
-          <img src="https://i.imgur.com/mKy8wX3.jpg" style="width:100%" alt="Avatar">
-          <!-- alt: https://i.imgur.com/qv9n4lH.gif -->
-          <div class="w3-display-bottomleft w3-container w3-text-white">
-            <h2>Daniel Ilsø</h2>
-          </div>
-        </div>
-        <div class="w3-container">
-          <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Social Data Science Student</p>
-          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>Sjælland, Denmark</p>
-          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>danbenilsoe@gmail.com</p>
-          <hr>
+<!-- Header -->
+<header class="w3-container w3-center w3-padding-32"> 
+  <h1><b>My Personal Projects</b></h1>
+  <p>Welcome to an overview of various projects driven by curiosity, pursued and sometimes completed by <span class="w3-tag">Daniel Ilsø</span></p>
+</header>
 
-          <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Skills</b></p>
-          <p>Data Analysis</p>
-          <div class="w3-light-grey w3-round-xlarge w3-small">
-            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:90%"></div>
-          </div>
-          <p>Data Visualization</p>
-          <div class="w3-light-grey w3-round-xlarge w3-small">
-            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:75%">
-              <div class="w3-center w3-text-white"></div>
-            </div>
-          </div>
-          <p>Data Wrangling</p>
-          <div class="w3-light-grey w3-round-xlarge w3-small">
-            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:85%"></div>
-          </div>
-          <p>Machine Learning</p>
-          <div class="w3-light-grey w3-round-xlarge w3-small">
-            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:65%"></div>
-          </div>
-          <p>Web Scraping</p>
-          <div class="w3-light-grey w3-round-xlarge w3-small">
-            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:70%"></div>
-          </div>
-          <br>
+<!-- Grid -->
+<div class="w3-row">
 
-          <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i>Languages</b></p>
-          <p>Danish</p>
-          <div class="w3-light-grey w3-round-xlarge">
-            <div class="w3-round-xlarge w3-teal" style="height:24px;width:100%"></div>
-          </div>
-          <p>English</p>
-          <div class="w3-light-grey w3-round-xlarge">
-            <div class="w3-round-xlarge w3-teal" style="height:24px;width:98%"></div>
-          </div>
-          <br>
-        </div>
-      </div><br>
-
-    <!-- End Left Column -->
+<!-- Blog entries -->
+<div class="w3-col l8 s12">
+  <!-- Blog entry -->
+  <div class="w3-card-4 w3-margin w3-white">
+    <img src="/w3images/woods.jpg" alt="Nature" style="width:100%">
+    <div class="w3-container">
+      <h3><b>Family Tree of Human Thought: </b></h3>
+      <h4> <b>Mapping philosophers, their influences and who they have influenced </b></h4>
+      <h5>Keywords: <span class="w3-opacity">Network, Philosophy, Python, Wikipedia</span></h5>
     </div>
 
-    <!-- Right Column -->
-    <div class="w3-twothird">
-    
-      <div class="w3-container w3-card w3-white w3-margin-bottom">
-        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Work Experience</h2>
-        <div class="w3-container">
-          <h5 class="w3-opacity"><b>Project Assistant | Norstat Danmark</b></h5>
-          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>May 2022 - <span class="w3-tag w3-teal w3-round">Current</span></h6>
-          <p>Lorem ipsum dolor sit amet. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
-          <hr>
-        </div>
-        <div class="w3-container">
-          <h5 class="w3-opacity"><b>Scripting Assistant | Userneeds</b></h5>
-          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Oct 2021 - May 2022</h6>
-          <p>Consectetur adipisicing elit. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
-          <hr>
+    <div class="w3-container">
+      <p>Placeholder text. Setup of site is still in progress. Also note that the link to read more does not work at the moment.</p>
+      <div class="w3-row">
+        <div class="w3-col m8 s12">
+          <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
         </div>
       </div>
-
-      <div class="w3-container w3-card w3-white">
-        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Education</h2>
-        <div class="w3-container">
-          <h5 class="w3-opacity"><b>MSc Social Data Science, University of Copenhagen</b></h5>
-          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Sep 2022 - <span class="w3-tag w3-teal w3-round">Current</span></h6>
-          <hr>
-        </div>
-        <div class="w3-container">
-          <h5 class="w3-opacity"><b>BSc Sociology, University of Copenhagen</b></h5>
-          <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Sep 2018 - Jan 2022</h6>
-          
-        </div>
-      </div>
-
-    <!-- End Right Column -->
     </div>
-    
-  <!-- End Grid -->
   </div>
-  
-  <!-- End Page Container -->
+  <hr>
+
+  <!-- Blog entry 
+  <div class="w3-card-4 w3-margin w3-white">
+  <img src="/w3images/bridge.jpg" alt="Norway" style="width:100%">
+    <div class="w3-container">
+      <h3><b>BLOG ENTRY</b></h3>
+      <h5>Title description, <span class="w3-opacity">April 2, 2014</span></h5>
+    </div>
+
+    <div class="w3-container">
+      <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed
+        tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
+      <div class="w3-row">
+        <div class="w3-col m8 s12">
+          <p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
+        </div>
+        <div class="w3-col m4 w3-hide-small">
+          <p><span class="w3-padding-large w3-right"><b>Comments  </b> <span class="w3-badge">2</span></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  -->
+<!-- END BLOG ENTRIES -->
 </div>
 
-<footer class="w3-container w3-teal w3-center w3-margin-top">
-  <p>Find me on LinkedIn.</p>
-  <i class="fa fa-linkedin w3-hover-opacity"></i>
-  <p> Hosted by Github Pages </p>
-  <p>Site structure from <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+<!-- Introduction menu -->
+<div class="w3-col l4">
+<!-- Posts -->
+  <div class="w3-card w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Projects To Pursue</h4>
+      <h7>*Pursuits are subject to change</h7>
+    </div>
+    <ul class="w3-ul w3-hoverable w3-white">
+      <li class="w3-padding-16">
+        <img src="/w3images/workshop.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+        <span class="w3-large">Medicine Pricing Developments</span><br>
+        <span>Data source found. Not yet pursued.</span>
+      </li>
+      <li class="w3-padding-16">
+        <img src="/w3images/gondol.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+        <span class="w3-large">The Heartbeat of a City</span><br>
+        <span>Not yet pursued.</span>
+      </li> 
+      <li class="w3-padding-16">
+        <img src="/w3images/skies.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+        <span class="w3-large">Political Polarisation and Media Bias</span><br>
+        <span>Revisit of an old project with a new perspective. Not yet pursued.</span>
+      </li>   
+      <!--<li class="w3-padding-16 w3-hide-medium w3-hide-small">
+        <img src="/w3images/rock.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
+        <span class="w3-large">Mingsum</span><br>
+        <span>Lorem ipsum dipsum</span>
+      </li>
+      -->
+    </ul>
+  </div>
+  <hr> 
+
+  <!-- About Card -->
+  <div class="w3-card w3-margin w3-margin-top">
+  <img src="https://i.imgur.com/mKy8wX3.jpg" style="width:100%">
+    <div class="w3-container w3-white">
+      <h4><b>Daniel Ilsø</b></h4>
+      <p>I am driven by my curiosity. Ideas come easy to me.<br>The true challenge is pursuing them and completing them. The goal of this site is to push myself to have something meaningful to share with you.</p>
+    </div>
+  </div><hr>
+  
+  
+ 
+  <!-- Labels / tags 
+  <div class="w3-card w3-margin">
+    <div class="w3-container w3-padding">
+      <h4>Tags</h4>
+    </div>
+    <div class="w3-container w3-white">
+    <p><span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">London</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">IKEA</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">NORWAY</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">DIY</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Baby</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Family</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">News</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Clothing</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Shopping</span>
+      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Sports</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Games</span>
+    </p>
+    </div>
+  </div>
+  -->
+<!-- END Introduction Menu -->
+</div>
+
+<!-- END GRID -->
+</div><br>
+
+<!-- END w3-content -->
+</div>
+
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+  <!--
+  <button class="w3-button w3-black w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
+  <button class="w3-button w3-black w3-padding-large w3-margin-bottom">Next »</button>
+  -->
+  <p>Hosted by Github Pages </p>
+  <p>HTML structure from <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
 </footer>
 
 </body>
