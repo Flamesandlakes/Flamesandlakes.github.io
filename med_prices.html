@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Pharmacy Prices</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-center" style="max-width:1500px">
+  <img class="w3-image" src="https://images.pexels.com/photos/51929/medications-cure-tablets-pharmacy-51929.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Tree" width="60%" max-width=1280 style="opacity:0.7">
+  
+  <div class="w3-display-middle w3-padding-large w3-border w3-wide w3-text-light-grey w3-center">
+    <h1 class="w3-hide-medium w3-hide-small w3-xxxlarge" style="color: black; opacity: 0.8;"><b>MEDICINE PRICES</b></h1>
+    <h5 class="w3-hide-large" style="white-space:nowrap" style="color: black; opacity: 1;"><b>MEDICINE PRICES</b></h5>
+    <h3 class="w3-hide-medium w3-hide-small" style="color: black; opacity: 0.8;"><b>Danish Pharmacies 2018-2023</b></h3>
+  </div>
+  
+  <!-- Navbar (placed at the bottom of the header image) -->
+  <div class="w3-bar w3-light-grey w3-round w3-display-bottommiddle w3-hide-small" style="bottom:-16px">
+    <a href="/" class="w3-bar-item w3-button">Return to Home Page</a>
+    <!--
+    <a href="#data" class="w3-bar-item w3-button">Data</a>
+    <a href="#exploration" class="w3-bar-item w3-button">Exploration</a> -->
+  </div>
+</header>
+
+<!-- Navbar on small screens -->
+<div class="w3-center w3-light-grey w3-padding-16 w3-hide-large w3-hide-medium">
+<div class="w3-bar w3-light-grey">
+  <a href="#" class="w3-bar-item w3-button">Return to Home Page</a>
+  <!-- 
+  <a href="#data" class="w3-bar-item w3-button">Data</a>
+  <a href="#exploration" class="w3-bar-item w3-button">Exploration</a>
+  -->
+</div>
+</div>
+<!-- Page content -->
+<div class="w3-content w3-padding-large w3-margin-top" id="data">
+
+  <!-- Images (Portfolio) -->
+  <h1> Danish Pharmacy Prices (2018 - 2023) </h1>
+    <p>
+      INTRODUCE FOCUS QUESTIONS 
+      <br>INTRODUCE DATA
+      
+
+    
+    </p>
+    <p> 
+     
+    </p><p>
+   </p><p>
+    
+  </p>
+</div>
+<div class="w3-content w3-padding-large w3-margin-top" id="descriptive">
+  <h2> What is the price of medicine?</h2>
+
+  <p>
+    As both the price of medicinal products and the products themselves change over time, I will start by looking at price based on the average price of the product across its time on the market.
+    <br> This allows me to better compare products that may not otherwise appear on the market in the same time frames.   
+  </p>
+  <p>
+    For some descriptive statistics, the range of average sales prices ranges from <b>0.05</b> DKK per DDD to as high as <b>2,370,000</b> DKK per DDD in some outlier cases.
+    <br> The mean of the price range is <b>732.16</b> DKK per DDD whereas the median lies at just <b>12.88</b> DKK per DDD.  
+  </p>
+  <h3>Least expensive products</h3>
+  
+    <center>
+      <img src="images/med_prices/top15_least_expensive_individual_products.png"  ;max-width="100%";class="center">
+    </center>
+    
+  
+  <h3>Most expensive products</h3>
+  <p>
+    <center>
+      <img src="images/med_prices/top15_most_expensive_individual_products.png"  ;max-width="100%";class="center">
+    </center>
+    <i>Note that the x-axis is log scaled.</i>
+    <br><br>
+    I will highlight the most expensive medical product which is Idefirix manufactured by Hansa. 
+    <a href="https://www.ema.europa.eu/en/medicines/human/EPAR/idefirix">Idefirix</a> is an immunosuppressant used to prevent rejection of a newly transplated kidney. 
+    While the sales price tag looks scary, pharmacies only sell Idefirix to hospitals.
+  </p>
+
+<!-- <h2> Directed Network of Thinkers</h2> -->
+  </div>
+  
+  
+  <div class="w3-content w3-padding-large w3-margin-top">
+  <p>
+  </p>
+  
+</div>
+
+<div class="w3-content w3-padding-large w3-margin-top">
+  
+  <p> 
+    
+  </p>
+
+  <h2>How does the price of medicines change over time?</h2>
+  PLACEHOLDER -> plot, then some text
+  <br> Consider subplots (by company | by ATC)
+
+</div>
+
+    <center>
+      <img src="images/med_prices/mean_product_prices_individual_products.png"  ;max-width="100%";class="center">
+    </center>
+    
+<div class="w3-content w3-padding-large w3-margin-top">
+<p>
+  I will first add that the mean price of individual products does not necessarily reflect medicine costs for the average consumer as it does not factor in weights based on how widely used the given product is.
+  <br><br>
+  The sudden increase in mean price in October of 2020 can be attributed to the introduction of Idefirix to the market alongside a range of other highly priced products (albeit not as expensive as Idefirix).
+  
+</p>
+<br>
+<br>
+So what does the development in price look like when we remove such outliers?
+</div>
+  
+  <br>
+  <br>
+  <br>
+    <center>
+      <img src="images/med_prices/mean_product_prices_individual_products_excl_outliers.png"  ;max-width="100%";class="center">
+    </center>
+    
+  <div class="w3-content w3-padding-large w3-margin-top">
+  <p>
+    <i>Outliers are defined based on their average prize across the entire time period. The outliers are thus treated as the same products regardless of the time window. </i>
+  </p>
+
+  <h2>How long does products stay on market?</h2>
+  PLACEHOLDER -> plot distribution
+  <br> consider plotting the number of products over time
+  
+
+  <h2>Does price of medicine vary depending on form, ATC class or company?</h2>
+  PLACEHOLDER -> a lin reg might be used to isolate / control for all of these factors
+
+  <br>
+  <!--
+  <h2> Most Influential Thinkers</h2>
+  <h5>Sorted by time span </h5>
+  
+  <br>
+    <p>
+      Besides the connections, I also took the opportunity to collect the text from each philosopher's Wikipedia page. We can see how words are semantically related to other words by using word embeddings. 
+      However after having removed common, less meaningful words also called stopwords, I still have more than 21000 unique words represented in the word embedding model. 
+      To keep things digestible, I will focus on the surnames of the 44 persons already highlighted. 
+      <i>
+      Note that the semantic proximity as plotted below also take the semantic relation to and between the aforementioned 21000 or so other words into account, they have simply been omitted from the plot.
+      Additionally, dimensionality reduction in form of Principal Component Analysis has been used to reduce the number of dimensions such that they can be plotted.  
+      </i>    
+    </p>
+</div>
+    <center>
+      <img src="images/Semantic Embeddings of Highlighted Thinkers, untitled.png"  ;max-width="100%";class="center">
+    </center>
+  -->
+  
+    <header class="w3-display-container w3-content w3-center" style="max-width:1500px">
+      <!-- Navbar (placed at the bottom of the header image) -->
+      <div class="w3-bar w3-light-grey w3-round w3-display-bottommiddle w3-hide-small" style="bottom:-16px">
+        <a href="/" class="w3-bar-item w3-button">Return to Home Page</a>
+      </div>
+    </header>
+  <!-- Contact
+  <div class="w3-light-grey w3-padding-large w3-padding-32 w3-margin-top" id="findings2">
+    <h3 class="w3-center">Contact</h3>
+    <hr>
+    <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus.</p>
+
+    <form action="/action_page.php" target="_blank">
+      <div class="w3-section">
+        <label>Name</label>
+        <input class="w3-input w3-border" type="text" required name="Name">
+      </div>
+      <div class="w3-section">
+        <label>Email</label>
+        <input class="w3-input w3-border" type="text" required name="Email">
+      </div>
+      <div class="w3-section">
+        <label>Message</label>
+        <input class="w3-input w3-border" required name="Message">
+      </div>
+      <button type="submit" class="w3-button w3-block w3-dark-grey">Send</button>
+    </form><br>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+
+  </div>
+	-->
+<!-- Navbar (placed at the bottom of the header image) 
+  <div class="w3-bar w3-light-grey w3-round w3-display-bottommiddle w3-hide-small" style="bottom:-16px">
+    <a href="/" class="w3-bar-item w3-button">Home Page</a>
+    <!-
+    <a href="#data" class="w3-bar-item w3-button">Data</a>
+    <a href="#exploration" class="w3-bar-item w3-button">Exploration</a> ->
+  </div>
+-->
+
+  <!-- End page content -->
+</div>
+</div>
+
+  
+
+</body>
+</html>
