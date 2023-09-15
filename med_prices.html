@@ -44,8 +44,8 @@
   <h1> Danish Pharmacy Prices (2018 - 2023) </h1>
     <p>
       INTRODUCE FOCUS QUESTIONS 
-      <br>INTRODUCE DATA
-      
+      <br>INTRODUCE DATA (incl ATC codes)
+      <br>TJEK FORM (me vs. us) -> afgør form, som teksten holder sig til
 
     
     </p>
@@ -65,7 +65,7 @@
   </p>
   <p>
     For some descriptive statistics, the range of average sales prices ranges from <b>0.05</b> DKK per DDD to as high as <b>2,370,000</b> DKK per DDD in some outlier cases.
-    <br> The mean of the price range is <b>732.16</b> DKK per DDD whereas the median lies at just <b>12.88</b> DKK per DDD.  
+    <br><br> The mean of the price range is <b>732.16</b> DKK per DDD whereas the median lies at just <b>12.88</b> DKK per DDD.  
   </p>
   <h3>Least expensive products</h3>
   
@@ -73,7 +73,8 @@
       <img src="images/med_prices/top15_least_expensive_individual_products.png"  ;max-width="100%";class="center">
     </center>
     
-  
+    <p>PLACEHOLDER - insert follow up on cheap products</p>
+
   <h3>Most expensive products</h3>
   <p>
     <center>
@@ -136,12 +137,48 @@ So what does the development in price look like when we remove such outliers?
     <i>Outliers are defined based on their average prize across the entire time period. The outliers are thus treated as the same products regardless of the time window. </i>
   </p>
 
-  <h2>How long does products stay on market?</h2>
-  PLACEHOLDER -> plot distribution
-  <br> consider plotting the number of products over time
-  
+  <p>
+    Averages can be a good indicator at times by informing about the broader picture. In this case, they tell us that we can expect the sale prices of pharmaceutical products to generally increase as time progresses. But as a metric it is also susceptible to be influenced by outliers.
+    <br><br>
+    An average based all individual products leads us to lose some details. There are many variables that may play into pricing where the data gives us access to some. Of particular interest to me is the ATC codes.
+  </p>
+</div>
+<center>
+  <img src="images/med_prices/product_means_by_atc_wo_outliers.png"  ;max-width="100%";class="center">
+</center>
 
-  <h2>Does price of medicine vary depending on form, ATC class or company?</h2>
+<div class="w3-content w3-padding-large w3-margin-top">
+  <h2>How long does products stay on market?</h2>
+
+  <p>
+    The number of products on market does not remain constant across time. 
+    <br><br>There were <b>7108</b> medical producs (with a corresponding DDD) listed on the 7th of May 2018. 
+    <br>On the 6th of June 2023, that number sit at <b>7197</b>.
+    <br><br> But the graph below reveals that the development is more than a simple increase, 
+    as products enter and exit from the pharmacy listing at different rates throughout the time period. 
+    </p>
+  </div>
+
+  <br>
+
+NOTE: ADD axis labels + reformat dates 
+
+    <center>
+      <img src="images/med_prices/new_entries_and_removals_of_individual_products.png"  ;max-width="100%";class="center">
+    </center>
+    
+  <div class="w3-content w3-padding-large w3-margin-top">
+
+
+  
+  <p>
+    In terms of how long products stay on the market, 26% of medical products are observed at all biweekly time windows for a minimum of <b>1876</b> days - a bit more than 5 years.
+    <br> The average time on market sits on <b>1154</b> days while the median sits at <b>1236</b> days. As a point of reference, 3 years is equivalent to 1095 days.  
+    <br> The mean and the median are both dragged upwards by the aforementioned 26% of medical products. The time on market among products are otherwise fairly evenly distributed when you look aside products extending beyond the observed time period. 
+    
+  </p>
+
+  <h2>Does price of medicine vary depending on form, ATC class, company, or number of (unique) competitors?</h2>
   PLACEHOLDER -> a lin reg might be used to isolate / control for all of these factors
 
   <br>
