@@ -97,7 +97,7 @@
       In brief, ATC codes have 5 levels with increasing levels of specificity, ranging broadly from which anatomical category the treatment applies to (14 main codes) to the chemical substance in the medicine (1634 unique subcodes observed in the dataset).
       <br> 
     </p>
-      
+      <!-- NOTE OVERVEJ AT INDSÆTTE FREKVENS TABELLER FOR ATC; FIRMA; FORM ... og PRIS INTERVALLER-->
     </p>
     <p> 
      
@@ -231,12 +231,13 @@ So what does the development in price look like when we remove such outliers?
 </div>
 <br><br>
 <div class="button">
-  <button class="btn btn-warning" onclick=means_by_atc_full();>
-      All ATC codes
-  </button>
   <button class="btn btn-success" onclick=means_by_atc_zoomed();>
       Zoom-in on buttom 11 ATC codes
   </button>
+  <button class="btn btn-warning" onclick=means_by_atc_full();>
+      All ATC codes
+  </button>
+  
 </div>
 </center>
 

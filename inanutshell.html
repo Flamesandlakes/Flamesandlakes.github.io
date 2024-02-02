@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+	 transform-origin: 63px 63px;
+     transform: translate(-50%, -50%);
+	 animation: spin 0.8s infinite linear;
+}
+ .loader .spinner {
+	 display: block;
+	 width: 100%;
+	 height: 100%;
+	 border-radius: 58%;
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+	 border-width: 0px 0px 28px 28px;
+	 border-style: solid;
+	 border-color: transparent;
+}
+.loader .spinner.white {
+  border-left-color: #FFFFFF; /* White */
+  transform: rotate(0deg);
+}
+
+.loader .spinner.peach {
+  border-left-color: #FFDAB9; /* Peach */
+  transform: rotate(-22.5deg);
+}
+
+.loader .spinner.pink {
+  border-left-color: #FF69B4; /* Pink */
+  transform: rotate(-45deg);
+}
+
+.loader .spinner.magenta {
+  border-left-color: #FF00FF; /* Magenta */
+  transform: rotate(-67.5deg);
+}
+
+.loader .spinner.violet {
+  border-left-color: #8B00FF; /* Violet */
+  transform: rotate(-90deg);
+}
+
+.loader .spinner.indigo {
+  border-left-color: #4B0082; /* Indigo */
+  transform: rotate(-112.5deg);
+}
+
+.loader .spinner.blue {
+  border-left-color: #0000FF; /* Blue */
+  transform: rotate(-135deg);
+}
+
+.loader .spinner.sky-blue {
+  border-left-color: #87CEEB; /* Sky Blue */
+  transform: rotate(-157.5deg);
+}
+
+.loader .spinner.cyan {
+  border-left-color: #00FFFF; /* Cyan */
+  transform: rotate(-180deg);
+}
+
+.loader .spinner.turquoise {
+  border-left-color: #40E0D0; /* Turquoise */
+  transform: rotate(-202.5deg);
+}
+
+.loader .spinner.green {
+  border-left-color: #008000; /* Green */
+  transform: rotate(-225deg);
+}
+
+.loader .spinner.lime {
+  border-left-color: #00FF00; /* Lime */
+  transform: rotate(-247.5deg);
+}
+
+.loader .spinner.yellow {
+  border-left-color: #FFD700; /* Yellow */
+  transform: rotate(-270deg);
+}
+
+.loader .spinner.orange {
+  border-left-color: #FF7F00; /* Orange */
+  transform: rotate(-292.5deg);
+}
+
+.loader .spinner.red {
+  border-left-color: #FF0000; /* Red */
+  transform: rotate(-315deg);
+}
+
+
+}
+/*
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+*/
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); transform-origin: 50% 50%; }
+  100% { -webkit-transform: rotate(360deg); transform-origin: 50% 50%; }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); transform-origin: 50% 50%; }
+  100% { transform: rotate(360deg); transform-origin: 50% 50%; }
+}
+
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 2s;
+  animation-name: animatebottom;
+  animation-duration: 2s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+</style>
+</head>
+<body onload="myFunction()" style="margin:0;">
+
+<div id="initial"><center>
+<p>Searching ... <br> Please wait. </p></center>
+
+<el id="loader">
+	<div class="loader">
+   <div class="spinner peach"></div>
+  <div class="spinner pink"></div>
+  <div class="spinner magenta"></div>
+  <div class="spinner violet"></div>
+  <div class="spinner indigo"></div>
+  <div class="spinner blue"></div>
+  <div class="spinner sky-blue"></div>
+  <div class="spinner cyan"></div>
+  <div class="spinner turquoise"></div>
+  <div class="spinner green"></div>
+  <div class="spinner lime"></div>
+  <div class="spinner yellow"></div>
+  <div class="spinner orange"></div>
+  <div class="spinner red"></div>
+  <div class="spinner white"></div>
+</div>
+    </el>
+</div>
+
+<div style="display:none;" id="myDiv" class="animate-bottom">
+  <p>Results found:</p>
+</div>
+<div style="display:none;" id="results" class="animate-bottom">
+  <center><h2>all da nuts</h2></center>
+</div>
+
+<script>
+var myVar;
+var delayVar;
+
+function myFunction() {
+  myVar = setTimeout(showPage, 9000);
+  delayVar = setTimeout(showResults, 9400);
+}
+
+function showPage() {
+  document.getElementById("initial").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+function showResults() {
+  document.getElementById("results").style.display = "block";
+}
+
+</script>
+
+</body>
+</html>
