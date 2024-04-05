@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Pharmacy Prices</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="custom_layout.css"> <!-- href="https://www.w3schools.com/w3css/4/w3.css"> -->
+
+<script>
+  function mean_over_time_removeOutliers(){
+    document.getElementById("PIC_mean_prod_over_time_wo_outliers")
+    .src="images/med_prices/mean_product_prices_individual_products_excl_outliers.png";
+    document.getElementById("outlierRemover")
+    .style.visibility="hidden";
+  } 
+
+  function means_by_atc_full(){
+    document.getElementById('PIC_prod_means_by_atc')
+    .src="images/med_prices/product_means_by_atc_wo_outliers_labadjusted_v3.png";
+  }
+    
+  function means_by_atc_zoomed(){
+    document.getElementById('PIC_prod_means_by_atc')
+    .src="images/med_prices/product_means_by_atc_wo_outliers_labadjusted_v3_sub400.png";
+  }
+  </script>
+  
+
+
+</head>
+<body>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-center" style="max-width:1500px">
+  <img class="w3-image" src="https://images.pexels.com/photos/51929/medications-cure-tablets-pharmacy-51929.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Medicine" width="60%" max-width=1280 style="opacity:0.7">
+  
+  <div class="w3-display-middle w3-padding-large w3-border w3-wide w3-text-light-grey w3-center">
+    <h1 class="w3-hide-medium w3-hide-small w3-xxxlarge" style="color: black; opacity: 0.8;"><b>MEDICINE PRICES</b></h1>
+    <h5 class="w3-hide-large" style="white-space:nowrap" style="color: black; opacity: 1;"><b>MEDICINE PRICES</b></h5>
+    <h3 class="w3-hide-medium w3-hide-small" style="color: black; opacity: 0.8;"><b>Danish Pharmacies 2018-2023</b></h3>
+  </div>
+  
+  <!-- Navbar (placed at the bottom of the header image) -->
+  <div class="w3-bar w3-light-grey w3-round w3-display-bottommiddle w3-hide-small" style="bottom:-16px">
+    <a href="/" class="w3-bar-item w3-button">Return to Home Page</a>
+    <!--
+    <a href="#data" class="w3-bar-item w3-button">Data</a>
+    <a href="#exploration" class="w3-bar-item w3-button">Exploration</a> -->
+  </div>
+</header>
+
+<!-- Navbar on small screens -->
+<div class="w3-center w3-light-grey w3-padding-16 w3-hide-large w3-hide-medium">
+<div class="w3-bar w3-light-grey">
+  <a href="/" class="w3-bar-item w3-button">Return to Home Page</a>
+  <!-- 
+  <a href="#data" class="w3-bar-item w3-button">Data</a>
+  <a href="#exploration" class="w3-bar-item w3-button">Exploration</a>
+  -->
+</div>
+</div>
+
+
+<!-- Side navigation -->
+<div class="navbar">
+  <a href="#">Introduction</a>
+  <a href="#descriptivePrices">What is the price of medicine?</a>
+  <a href="#meanOverTime">How does the price of medicines change over time?</a>
+  <a href="#timeOnMarket">How long does products stay on market?</a>
+  <a href="#varianceInPrice">Why does medicine prices vary?</a>
+  <a href="/">Return to Home Page</a>
+</div>
+
+
+<!-- Page content -->
+
+<div class="w3-content w3-padding-large w3-margin-top">
+
+  <!-- Title -->
+  <h1  id="data"> Danish Pharmaceutical Prices (2018 - 2023) </h1>
+    <p>
+      Modern medicines are literal life-savers. They also provide a wide range of utility beside life critical functions. It is hard to understate their importance to society. 
+      <br><br>
+      But there are is also a financial aspect as with any other product. 
+    </p>
+    <p>
+      The data used in this project is collected from <a href="https://www.medicinpriser.dk">medicinpriser.dk</a>. 
+      It covers <b>16050</b> individual medical producs of which <b>11459</b> have a corresponding Defined Daily Dosis (DDD). 
+      I will focus solely the 11459 with a DDD to control for the number of doses. Looking at the product price per DDD should make it more fair to compare prices between products with otherwise different sizes in packaging.  
+      <b>Mentions of price in the remainder of this project refers to the pharmacies' sales price in DKK per DDD.</b>
+    </p>
+    <p>
+      The data includes the price of the products recorded at 136 different time windows, 2 weeks apart, spanning from the 7th of May 2018 to the 26th of June 2023.
+      <br>
+      Additional variables on each product include the name of product, the company behind the product, the form of the product, the product's ATC code alongside a couple of other variables.
+      ATC stands for Anatomical Therapeutic Chemical Classification and can be used to derive a lot of information about a particular product. 
+      In brief, ATC codes have 5 levels with increasing levels of specificity, ranging broadly from which anatomical category the treatment applies to (14 main codes) to the chemical substance in the medicine (1634 unique subcodes observed in the dataset).
+      <br> 
+    </p>
+      <!-- NOTE OVERVEJ AT INDSÆTTE FREKVENS TABELLER FOR ATC; FIRMA; FORM ... og PRIS INTERVALLER-->
+    </p>
+    <p> 
+     
+    </p><p>
+   </p><p>
+    
+  </p>
+</div>
+<div class="w3-content w3-padding-large w3-margin-top" >
+  <h2 id="descriptivePrices"> What is the price of medicine?</h2>
+
+  <p>
+    As both the price of medicinal products and the products themselves change over time, I will start by looking at price based on the average price of the product across its time on the market.
+    <br> This allows me to better compare products that may not otherwise appear on the market in the same time frames.   
+  </p>
+  <p>
+    For some descriptive statistics, the range of average sales prices ranges from <b>0.05</b> DKK per DDD to as high as <b>2,370,000</b> DKK per DDD in some outlier cases.
+    <br><br> The mean of the price range is <b>732.16</b> DKK per DDD whereas the median lies at just <b>12.88</b> DKK per DDD.  
+  </p>
+  <h3>Least expensive products</h3>
+  
+    <center>
+      <img src="images/med_prices/top15_least_expensive_individual_products.png"  ;max-width="100%";class="center">
+    </center>
+    
+    <!--<p>PLACEHOLDER - insert follow up on cheap products</p>-->
+
+  <h3>Most expensive products</h3>
+  <p>
+    <center>
+      <img src="images/med_prices/top15_most_expensive_individual_products.png"  ;max-width="100%";class="center">
+    </center>
+    <i>Note that the x-axis is log scaled.</i>
+    <br><br>
+    I will highlight the most expensive medical product which is Idefirix manufactured by Hansa. 
+    <a href="https://www.ema.europa.eu/en/medicines/human/EPAR/idefirix">Idefirix</a> is an immunosuppressant used to prevent rejection of a newly transplated kidney. 
+    While the sales price tag looks scary, pharmacies only sell Idefirix to hospitals.
+  </p>
+
+<!-- <h2> Directed Network of Thinkers</h2> -->
+  </div>
+  
+  
+  <div class="w3-content w3-padding-large w3-margin-top">
+  <p>
+  </p>
+  
+</div>
+
+<div class="w3-content w3-padding-large w3-margin-top" >
+
+  <h2 id = "meanOverTime">How does the price of medicines change over time?</h2>
+  <!--PLACEHOLDER -> plot, then some text
+  <br> Consider subplots (by company | by ATC)-->
+
+</div>
+
+    <center>
+      <img src="images/med_prices/mean_product_prices_individual_products.png"  ;max-width="100%";class="center">
+    </center>
+    
+<div class="w3-content w3-padding-large w3-margin-top">
+<p>
+  I will first add that the mean price of individual products does not necessarily reflect medicine costs for the average consumer as it does not factor in weights based on how widely used the given product is.
+  <br><br>
+  The sudden increase in mean price in October of 2020 can be attributed to the introduction of Idefirix to the market alongside a range of other highly priced products (albeit not as expensive as Idefirix).
+  
+</p>
+As previosuly noted, not all medicines are not sold directly to private citizens but only to hospitals and clinics. 
+<br>
+So what does the development in price look like when we remove such outliers?
+</div>
+  <center>
+  <div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h1 id="message">
+            
+            </h1>
+            <img id="PIC_mean_prod_over_time_wo_outliers">
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+  </div>
+  <br><br>
+  <div class="button">
+    <button class="btn btn-warning" id="outlierRemover" onclick=mean_over_time_removeOutliers();>
+        Click for plot without outliers
+    </button>
+
+  </div>
+
+  </center>
+<!--
+    <center>
+      <img src="images/med_prices/mean_product_prices_individual_products_excl_outliers.png"  ;max-width="100%";class="center">
+    </center>
+  -->
+  <div class="w3-content w3-padding-large w3-margin-top">
+  <p>
+    <i>Outliers are defined based on their average prize across the entire time period. The outliers are thus treated as the same products regardless of the time window. </i>
+  </p>
+
+  <p>
+    Averages can be a good indicator at times by informing about the broader picture. In this case, they tell us that we can expect the sale prices of pharmaceutical products to generally increase as time progresses. But as a metric it is also susceptible to be influenced by outliers.
+    <br><br>
+    An average based all individual products leads us to lose some details. There are many variables that may play into pricing where the data gives us access to some. Of particular interest to me is the ATC codes.  
+  </p>
+
+  <p>
+    <b>Note that all of the following plots involving mean prices will outliers removed</b> (top 1% and bottom 1% quantiles) <b> unless otherwise specified</b>. For groupings by ATC category, outlier boundaries are set on a within-group basis. 
+  </p>
+</div>
+
+<br><br><br>
+
+<center>
+<div class="container">
+  <div class="row">
+      <!--<div class="col-md-3"></div>-->
+      <div class="col-md-6">
+          <h1 id="message">
+          
+          </h1>
+          <img id="PIC_prod_means_by_atc" src="images/med_prices/product_means_by_atc_wo_outliers_labadjusted_v3.png">
+
+      </div>
+      <!--<div class="col-md-3"></div>-->
+  </div>
+</div>
+<br><br>
+<div class="button">
+  <button class="btn btn-success" onclick=means_by_atc_zoomed();>
+      Zoom-in on buttom 11 ATC codes
+  </button>
+  <button class="btn btn-warning" onclick=means_by_atc_full();>
+      All ATC codes
+  </button>
+  
+</div>
+</center>
+
+<div class="w3-content w3-padding-large w3-margin-top">
+
+  <p>
+    Prices vary depending on what ATC main group. The differences are substantial in some cases.  
+    <br>
+    Products belonging to the ATC main groups of V, B and L have the highest sale price on average. 
+    <br>
+    <!--Main group V is the hardest to pin-point as it corresponds to "Various", i.e. products outside of the defined treatment groups.--> 
+  </p>
+  <p>
+    Notably, the ATC main groups increase and decrease at different times and at different rates. 
+    <br>
+    ATC main groups of S and N remain consistent throughout the time window, 
+    while the main groups of P, D and V experienced the highest average percentage-wise increase relative to their original price average on 7th of May 2018.      
+  </p>
+
+</div>
+
+<div class="w3-content w3-padding-large w3-margin-top">
+  <h2 id="timeOnMarket">How long does products stay on market?</h2>
+
+  <p>
+    The number of products on market does not remain constant across time. 
+    <br><br>There were <b>7108</b> medical producs (with a corresponding DDD) listed on the 7th of May 2018. 
+    <br>On the 6th of June 2023, that number sit at <b>7197</b>.
+    <br><br> But the graph below reveals that the development is more than a simple increase, 
+    as products enter and exit from the pharmacy listing at different rates throughout the time period. 
+    </p>
+  </div>
+
+  <br>
+
+<!--NOTE: ADD axis labels + reformat dates--> 
+
+    <center>
+      <img src="images/med_prices/new_entries_and_removals_of_individual_products.png"  ;max-width="100%";class="center">
+    </center>
+    
+  <div class="w3-content w3-padding-large w3-margin-top">
+
+    <h3>Additional information about time on market</h3>
+  <p>
+    In terms of how long products stay on the market, 26% of medical products are observed at all biweekly time windows for a minimum of <b>1876</b> days - a bit more than 5 years.
+    <br> The average time on market sits on <b>1154</b> days while the median sits at <b>1236</b> days. As a point of reference, 3 years is equivalent to 1095 days.  
+    <br> The mean and the median are both dragged upwards by the aforementioned 26% of medical products. The time on market among products are otherwise fairly evenly distributed when you look aside products extending beyond the observed time period. 
+    
+  </p>
+</div>
+<div class="w3-content w3-padding-large w3-margin-top">
+
+  <h2 id="varianceInPrice">Why does medicine prices vary?</h2>
+  <!-- NOTE: PLACEHOLDER -> a lin reg might be used to isolate / control for all of these factors-->
+
+  <br><br><br><br>
+</div>
+  <!--
+  <h2> Most Influential Thinkers</h2>
+  <h5>Sorted by time span </h5>
+  
+  <br>
+    <p>
+      Besides the connections, I also took the opportunity to collect the text from each philosopher's Wikipedia page. We can see how words are semantically related to other words by using word embeddings. 
+      However after having removed common, less meaningful words also called stopwords, I still have more than 21000 unique words represented in the word embedding model. 
+      To keep things digestible, I will focus on the surnames of the 44 persons already highlighted. 
+      <i>
+      Note that the semantic proximity as plotted below also take the semantic relation to and between the aforementioned 21000 or so other words into account, they have simply been omitted from the plot.
+      Additionally, dimensionality reduction in form of Principal Component Analysis has been used to reduce the number of dimensions such that they can be plotted.  
+      </i>    
+    </p>
+</div>
+    <center>
+      <img src="images/Semantic Embeddings of Highlighted Thinkers, untitled.png"  ;max-width="100%";class="center">
+    </center>
+  -->
+  
+    <header class="w3-display-container w3-content w3-center" style="max-width:1500px">
+      <!-- Navbar (placed at the bottom of the header image) -->
+      <div class="w3-bar w3-light-grey w3-round w3-display-bottommiddle w3-hide-small" style="bottom:-16px">
+        <a href="/" class="w3-bar-item w3-button">Return to Home Page</a>
+      </div>
+    </header>
+
+    <!-- Navbar on small screens -->
+    <header class="w3-center w3-light-grey w3-padding-16 w3-hide-large w3-hide-medium">
+      <div class="w3-bar w3-light-grey">
+        <a href="/" class="w3-bar-item w3-button">Return to Home Page</a>
+        <!-- 
+        <a href="#data" class="w3-bar-item w3-button">Data</a>
+        <a href="#exploration" class="w3-bar-item w3-button">Exploration</a>
+        -->
+      </div>
+    </header>
+  <!-- Contact
+  <div class="w3-light-grey w3-padding-large w3-padding-32 w3-margin-top" id="findings2">
+    <h3 class="w3-center">Contact</h3>
+    <hr>
+    <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus.</p>
+
+    <form action="/action_page.php" target="_blank">
+      <div class="w3-section">
+        <label>Name</label>
+        <input class="w3-input w3-border" type="text" required name="Name">
+      </div>
+      <div class="w3-section">
+        <label>Email</label>
+        <input class="w3-input w3-border" type="text" required name="Email">
+      </div>
+      <div class="w3-section">
+        <label>Message</label>
+        <input class="w3-input w3-border" required name="Message">
+      </div>
+      <button type="submit" class="w3-button w3-block w3-dark-grey">Send</button>
+    </form><br>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+
+  </div>
+	-->
+<!-- Navbar (placed at the bottom of the header image) 
+  <div class="w3-bar w3-light-grey w3-round w3-display-bottommiddle w3-hide-small" style="bottom:-16px">
+    <a href="/" class="w3-bar-item w3-button">Home Page</a>
+    <!-
+    <a href="#data" class="w3-bar-item w3-button">Data</a>
+    <a href="#exploration" class="w3-bar-item w3-button">Exploration</a> ->
+  </div>
+-->
+
+  <!-- End page content -->
+</div>
+</div>
+
+  
+
+</body>
+</html>
