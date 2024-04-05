@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Mapping Philosophers</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-center" style="max-width:1500px">
+  <img class="w3-image" src="https://images.pexels.com/photos/38136/pexels-photo-38136.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Tree" width="60%" max-width=1280 style="opacity:0.7">
+  <div class="w3-display-middle w3-padding-large w3-border w3-wide w3-text-light-grey w3-center">
+    <h1 class="w3-hide-medium w3-hide-small w3-xxxlarge" style="color: white;opacity: 1;"><b>PHILSOPHY NETWORK</b></h1>
+    <h5 class="w3-hide-large" style="white-space:nowrap" style="color: white;opacity: 1;"><b>PHILSOPHY NETWORK</b></h5>
+    <h3 class="w3-hide-medium w3-hide-small"><b>EXPLORATORY ANALYSIS</b></h3>
+  </div>
+  
+  <!-- Navbar (placed at the bottom of the header image) -->
+  <div class="w3-bar w3-light-grey w3-round w3-display-bottommiddle w3-hide-small" style="bottom:-16px">
+    <a href="/" class="w3-bar-item w3-button">Return to Home Page</a>
+    <!--
+    <a href="#data" class="w3-bar-item w3-button">Data</a>
+    <a href="#exploration" class="w3-bar-item w3-button">Exploration</a> -->
+  </div>
+</header>
+
+<!-- Navbar on small screens -->
+<div class="w3-center w3-light-grey w3-padding-16 w3-hide-large w3-hide-medium">
+<div class="w3-bar w3-light-grey">
+  <a href="/" class="w3-bar-item w3-button">Return to Home Page</a>
+  <!-- 
+  <a href="#data" class="w3-bar-item w3-button">Data</a>
+  <a href="#exploration" class="w3-bar-item w3-button">Exploration</a>
+  -->
+</div>
+</div>
+<!-- Page content -->
+<div class="w3-content w3-padding-large w3-margin-top" id="data">
+
+  <!-- Images (Portfolio) -->
+  <h1> A Network of Philosophers? </h1>
+    <p>
+      I will be the first to admit that I do not know a lot about philosophy. But I see an opportunity to learn something about, if not philosophy itself, 
+    then how philosophers throughout human history are connected and can be traced. This is a challenge to dive into a field where I have limited domain knowledge, as I seek to satiate my curiosity.
+    </p>
+    <p> 
+      What I want to know in this case is how are philosophers and thinkers connected to each other. To answer this, I go through philosophers, 
+      listed from <a href="https://en.wikipedia.org/wiki/List_of_philosophers_(A%E2%80%93C)">A to Z on Wikipedia</a>, 
+      and collect information on who their influences are and who they themselves have influenced. I use the <a href="https://www.mediawiki.org/wiki/API:Main_page">MediaWiki API</a> to query the data.
+    </p><p>
+    To start with, this provides me withe 1761 unique pages listed from A to Z. There will likely be some selection bias in terms of what historical figures has a full-fledged Wikipedia article, which I do acknowledge. 
+    As I expand my search to influences listed on each of these pages, this increases to <b>4796</b> unique pages. Between them I count <b>9872</b> unique connections in total. On average, a node is connected to 2.31 other nodes.
+    </p><p>
+    These numbers covers the size of the data, but I would like to know more about the philosophers and how they are connected.    
+  </p>
+  I begin with a directed network based on influence. 
+ 
+
+<!-- <h2> Directed Network of Thinkers</h2> -->
+  </div>
+  
+  
+  <center>
+  <img src="images/philos_DG_degree_as_size__out_degree_as_gradient_3072_2304.png" width="80%";max-width="1536";class="center">
+  </center>
+  <div class="w3-content w3-padding-large w3-margin-top">
+  <p>
+    <i>
+    The nodes of the various philosophers and thinkers in the directed network is scaled based on degree, that is how many other nodes they are connected to in total. <br>
+    The green gradient reflects the out degree, which is specifically how many other philosophers in the network that the philosopher in question have been a source of inspiration or influence.
+    </i>
+  </p>
+  <p>
+    The directed network above provides a decent overview. However, if I cheat and take out the connections among thinkers that are contenporary to each other, I get an acyclic network. All connections can be traced backwards until we reach their respective roots.
+  </p>
+  <p>
+  The root represent a philosopher or thinker with no ancestors of their own. This network contains 344 such roots from which we can trace the ancestries of all nodes. 
+  <br> 
+  Based upon similarities in root ancestries and lack thereof between nodes, I can separate nodes into different clusters. To be brief, this results in 7 groups, or clusters, derived from K-means clustering. These clusters can be used for color-coding nodes depending on what cluster they belong to.    
+  </p>
+  <!-- purple, light red/pink, murky red, orange, turquise, green, and blue -->
+</div>
+<center>
+  <!--<img src="images/philos_DAG_degree_as_size__layer_as_gradient_3072_2304.png" width="768";max-width="1536";class="center"> -->
+  <img src="images/philos_DAG_degree_as_size__k_cluster_as_partition_3072_2304_v3.png" width="80%";class="center">
+   </center>
+<div class="w3-content w3-padding-large w3-margin-top">
+  
+  <p> 
+    As we note in the networks, there are some thinkers that appear to be prominent. I present a subset of these in the table below, which shows the 44 philosophers and thinkers that have the highest out degree, i.e. direct influence.
+  </p>
+  <br>
+  <!--
+  <h2> Most Influential Thinkers</h2>
+  <h5>Sorted by time span </h5>
+  <p> (note inaccuracies for some earlier thinkers) </p> -->
+  <table border="1" class="dataframe">
+    <thead>
+      <tr style="text-align: center;">
+        <th></th>
+        <th>Philosopher</th>
+        <th>Directly Influenced</th>
+        <th>Birth</th>
+        <th>Life Midpoint</th>
+        <th>Death</th>
+        <th>Ancestry Cluster</th>
+      </tr>
+    </thead>
+    <tbody style="text-align: center;">
+      <tr>
+        <th>1</th>
+        <td><a href="https://en.wikipedia.org//wiki/Confucius">Confucius</a></td>
+        <td>25</td>
+        <td>-551</td>
+        <td>-515</td>
+        <td>-479</td>
+        <td>Purple</td>
+      </tr>
+      <tr>
+        <th>2</th>
+        <td><a href="https://en.wikipedia.org//wiki/Heraclitus">Heraclitus</a></td>
+        <td>24</td>
+        <td>-535</td>
+        <td>-505</td>
+        <td>-475</td>
+        <td>Purple</td>
+      </tr>
+      <tr>
+        <th>3</th>
+        <td><a href="https://en.wikipedia.org//wiki/Socrates">Socrates</a></td>
+        <td>30</td>
+        <td>-475</td>
+        <td>-412</td>
+        <td>-350</td>
+        <td>Purple</td>
+      </tr>
+      <tr>
+        <th>4</th>
+        <td><a href="https://en.wikipedia.org//wiki/Plato">Plato</a></td>
+        <td>104</td>
+        <td>-425</td>
+        <td>-385</td>
+        <td>-345</td>
+        <td>Purple</td>
+      </tr>
+      <tr>
+        <th>5</th>
+        <td><a href="https://en.wikipedia.org//wiki/Aristotle">Aristotle</a></td>
+        <td>141</td>
+        <td>-384</td>
+        <td>-353</td>
+        <td>-322</td>
+        <td>Purple</td>
+      </tr>
+      <tr>
+        <th>6</th>
+        <td><a href="https://en.wikipedia.org//wiki/Plutarch">Plutarch</a></td>
+        <td>22</td>
+        <td>46</td>
+        <td>83</td>
+        <td>120</td>
+        <td>Red</td>
+      </tr>
+      <tr>
+        <th>7</th>
+        <td><a href="https://en.wikipedia.org//wiki/Plotinus">Plotinus</a></td>
+        <td>26</td>
+        <td>205</td>
+        <td>237</td>
+        <td>270</td>
+        <td>Red</td>
+      </tr>
+      <tr>
+        <th>8</th>
+        <td><a href="https://en.wikipedia.org//wiki/Augustine_of_Hippo">Augustine of Hippo</a></td>
+        <td>51</td>
+        <td>354</td>
+        <td>392</td>
+        <td>430</td>
+        <td>Brown</td>
+      </tr>
+      <tr>
+        <th>9</th>
+        <td><a href="https://en.wikipedia.org//wiki/Avicenna">Avicenna</a></td>
+        <td>28</td>
+        <td>985</td>
+        <td>1011</td>
+        <td>1037</td>
+        <td>Red</td>
+      </tr>
+      <tr>
+        <th>10</th>
+        <td><a href="https://en.wikipedia.org//wiki/Ibn_Arabi">Ibn Arabi</a></td>
+        <td>38</td>
+        <td>1165</td>
+        <td>1202</td>
+        <td>1240</td>
+        <td>Red</td>
+      </tr>
+      <tr>
+        <th>11</th>
+        <td><a href="https://en.wikipedia.org//wiki/Thomas_Aquinas">Thomas Aquinas</a></td>
+        <td>47</td>
+        <td>1225</td>
+        <td>1249</td>
+        <td>1274</td>
+        <td>Brown</td>
+      </tr>
+      <tr>
+        <th>12</th>
+        <td><a href="https://en.wikipedia.org//wiki/Meister_Eckhart">Meister Eckhart</a></td>
+        <td>28</td>
+        <td>1260</td>
+        <td>1294</td>
+        <td>1328</td>
+        <td>Brown</td>
+      </tr>
+      <tr>
+        <th>13</th>
+        <td><a href="https://en.wikipedia.org//wiki/Niccol%C3%B2_Machiavelli">Niccolò Machiavelli</a></td>
+        <td>31</td>
+        <td>1469</td>
+        <td>1498</td>
+        <td>1527</td>
+        <td>Brown</td>
+      </tr>
+      <tr>
+        <th>14</th>
+        <td><a href="https://en.wikipedia.org//wiki/Michel_de_Montaigne">Michel de Montaigne</a></td>
+        <td>37</td>
+        <td>1533</td>
+        <td>1562</td>
+        <td>1592</td>
+        <td>Brown</td>
+      </tr>
+      <tr>
+        <th>15</th>
+        <td><a href="https://en.wikipedia.org//wiki/Ren%C3%A9_Descartes">René Descartes</a></td>
+        <td>52</td>
+        <td>1596</td>
+        <td>1623</td>
+        <td>1650</td>
+        <td>Brown</td>
+      </tr>
+      <tr>
+        <th>16</th>
+        <td><a href="https://en.wikipedia.org//wiki/Baruch_Spinoza">Baruch Spinoza</a></td>
+        <td>53</td>
+        <td>1632</td>
+        <td>1654</td>
+        <td>1677</td>
+        <td>Green</td>
+      </tr>
+      <tr>
+        <th>17</th>
+        <td><a href="https://en.wikipedia.org//wiki/John_Locke">John Locke</a></td>
+        <td>47</td>
+        <td>1632</td>
+        <td>1668</td>
+        <td>1704</td>
+        <td>Green</td>
+      </tr>
+      <tr>
+        <th>18</th>
+        <td><a href="https://en.wikipedia.org//wiki/Gottfried_Leibniz">Gottfried Wilhelm Leibniz</a></td>
+        <td>57</td>
+        <td>1646</td>
+        <td>1681</td>
+        <td>1716</td>
+        <td>Green</td>
+      </tr>
+      <tr>
+        <th>19</th>
+        <td><a href="https://en.wikipedia.org//wiki/Isaac_Newton">Isaac Newton</a></td>
+        <td>27</td>
+        <td>1642</td>
+        <td>1684</td>
+        <td>1727</td>
+        <td>Green</td>
+      </tr>
+      <tr>
+        <th>20</th>
+        <td><a href="https://en.wikipedia.org//wiki/Giambattista_Vico">Giambattista Vico</a></td>
+        <td>33</td>
+        <td>1668</td>
+        <td>1706</td>
+        <td>1744</td>
+        <td>Green</td>
+      </tr>
+      <tr>
+        <th>21</th>
+        <td><a href="https://en.wikipedia.org//wiki/Voltaire">Voltaire</a></td>
+        <td>35</td>
+        <td>1694</td>
+        <td>1736</td>
+        <td>1778</td>
+        <td>Green</td>
+      </tr>
+      <tr>
+        <th>22</th>
+        <td><a href="https://en.wikipedia.org//wiki/David_Hume">David Hume</a></td>
+        <td>58</td>
+        <td>1711</td>
+        <td>1743</td>
+        <td>1776</td>
+        <td>Green</td>
+      </tr>
+      <tr>
+        <th>23</th>
+        <td><a href="https://en.wikipedia.org//wiki/Jean_Jacques_Rousseau">Jean-Jacques Rousseau</a></td>
+        <td>49</td>
+        <td>1712</td>
+        <td>1745</td>
+        <td>1778</td>
+        <td>Green</td>
+      </tr>
+      <tr>
+        <th>24</th>
+        <td><a href="https://en.wikipedia.org//wiki/Adam_Smith">Adam Smith</a></td>
+        <td>39</td>
+        <td>1723</td>
+        <td>1756</td>
+        <td>1790</td>
+        <td>Green</td>
+      </tr>
+      <tr>
+        <th>25</th>
+        <td><a href="https://en.wikipedia.org//wiki/Edmund_Burke">Edmund Burke</a></td>
+        <td>34</td>
+        <td>1729</td>
+        <td>1763</td>
+        <td>1797</td>
+        <td>Green</td>
+      </tr>
+      <tr>
+        <th>26</th>
+        <td><a href="https://en.wikipedia.org//wiki/Immanuel_Kant">Immanuel Kant</a></td>
+        <td>145</td>
+        <td>1724</td>
+        <td>1764</td>
+        <td>1804</td>
+        <td>Green</td>
+      </tr>
+      <tr>
+        <th>27</th>
+        <td><a href="https://en.wikipedia.org//wiki/Joseph_de_Maistre">Joseph de Maistre</a></td>
+        <td>39</td>
+        <td>1753</td>
+        <td>1787</td>
+        <td>1821</td>
+        <td>Green</td>
+      </tr>
+      <tr>
+        <th>28</th>
+        <td><a href="https://en.wikipedia.org//wiki/Georg_Wilhelm_Friedrich_Hegel">Georg Wilhelm Friedrich Hegel</a></td>
+        <td>103</td>
+        <td>1770</td>
+        <td>1800</td>
+        <td>1831</td>
+        <td>Blue</td>
+      </tr>
+      <tr>
+        <th>29</th>
+        <td><a href="https://en.wikipedia.org//wiki/Friedrich_Schelling">Friedrich Wilhelm Joseph Schelling</a></td>
+        <td>32</td>
+        <td>1775</td>
+        <td>1814</td>
+        <td>1854</td>
+        <td>Green</td>
+      </tr>
+      <tr>
+        <th>30</th>
+        <td><a href="https://en.wikipedia.org//wiki/Arthur_Schopenhauer">Arthur Schopenhauer</a></td>
+        <td>57</td>
+        <td>1788</td>
+        <td>1824</td>
+        <td>1860</td>
+        <td>Green</td>
+      </tr>
+      <tr>
+        <th>31</th>
+        <td><a href="https://en.wikipedia.org//wiki/Max_Stirner">Max Stirner</a></td>
+        <td>32</td>
+        <td>1806</td>
+        <td>1831</td>
+        <td>1856</td>
+        <td>Blue</td>
+      </tr>
+      <tr>
+        <th>32</th>
+        <td><a href="https://en.wikipedia.org//wiki/Alexis_de_Tocqueville">Alexis de Tocqueville</a></td>
+        <td>22</td>
+        <td>1805</td>
+        <td>1832</td>
+        <td>1859</td>
+        <td>Blue</td>
+      </tr>
+      <tr>
+        <th>33</th>
+        <td><a href="https://en.wikipedia.org//wiki/S%C3%B8ren_Kierkegaard">Søren Kierkegaard</a></td>
+        <td>53</td>
+        <td>1813</td>
+        <td>1834</td>
+        <td>1855</td>
+        <td>Blue</td>
+      </tr>
+      <tr>
+        <th>34</th>
+        <td><a href="https://en.wikipedia.org//wiki/John_Stuart_Mill">John Stuart Mill</a></td>
+        <td>24</td>
+        <td>1806</td>
+        <td>1839</td>
+        <td>1873</td>
+        <td>Blue</td>
+      </tr>
+      <tr>
+        <th>35</th>
+        <td><a href="https://en.wikipedia.org//wiki/John_Henry_Newman">John Henry Newman</a></td>
+        <td>28</td>
+        <td>1801</td>
+        <td>1845</td>
+        <td>1890</td>
+        <td>Blue</td>
+      </tr>
+      <tr>
+        <th>36</th>
+        <td><a href="https://en.wikipedia.org//wiki/Charles_Darwin">Charles Darwin</a></td>
+        <td>23</td>
+        <td>1809</td>
+        <td>1845</td>
+        <td>1882</td>
+        <td>Green</td>
+      </tr>
+      <tr>
+        <th>37</th>
+        <td><a href="https://en.wikipedia.org//wiki/Karl_Marx">Karl Marx</a></td>
+        <td>97</td>
+        <td>1818</td>
+        <td>1850</td>
+        <td>1883</td>
+        <td>Blue</td>
+      </tr>
+      <tr>
+        <th>38</th>
+        <td><a href="https://en.wikipedia.org//wiki/Friedrich_Nietzsche">Friedrich Nietzsche</a></td>
+        <td>61</td>
+        <td>1844</td>
+        <td>1872</td>
+        <td>1900</td>
+        <td>Cyan</td>
+      </tr>
+      <tr>
+        <th>39</th>
+        <td><a href="https://en.wikipedia.org//wiki/Ferdinand_de_Saussure">Ferdinand de Saussure</a></td>
+        <td>23</td>
+        <td>1857</td>
+        <td>1885</td>
+        <td>1913</td>
+        <td>Purple</td>
+      </tr>
+      <tr>
+        <th>40</th>
+        <td><a href="https://en.wikipedia.org//wiki/Sigmund_Freud">Sigmund Freud</a></td>
+        <td>33</td>
+        <td>1856</td>
+        <td>1897</td>
+        <td>1939</td>
+        <td>Orange</td>
+      </tr>
+      <tr>
+        <th>41</th>
+        <td><a href="https://en.wikipedia.org//wiki/Edmund_Husserl">Edmund Husserl</a></td>
+        <td>38</td>
+        <td>1859</td>
+        <td>1898</td>
+        <td>1938</td>
+        <td>Blue</td>
+      </tr>
+      <tr>
+        <th>42</th>
+        <td><a href="https://en.wikipedia.org//wiki/Ludwig_Wittgenstein">Ludwig Wittgenstein</a></td>
+        <td>107</td>
+        <td>1889</td>
+        <td>1920</td>
+        <td>1951</td>
+        <td>Orange</td>
+      </tr>
+      <tr>
+        <th>43</th>
+        <td><a href="https://en.wikipedia.org//wiki/Bertrand_Russell">Bertrand Russell</a></td>
+        <td>33</td>
+        <td>1872</td>
+        <td>1921</td>
+        <td>1970</td>
+        <td>Blue</td>
+      </tr>
+      <tr>
+        <th>44</th>
+        <td><a href="https://en.wikipedia.org//wiki/Leo_Strauss">Leo Strauss</a></td>
+        <td>43</td>
+        <td>1899</td>
+        <td>1936</td>
+        <td>1973</td>
+        <td>Cyan</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <br>
+    <p>
+      Besides the connections, I also took the opportunity to collect the text from each philosopher's Wikipedia page. We can see how words are semantically related to other words by using word embeddings. 
+      However after having removed common, less meaningful words also called stopwords, I still have more than 21000 unique words represented in the word embedding model. 
+      To keep things digestible, I will focus on the surnames of the 44 persons already highlighted. 
+      <i>
+      Note that the semantic proximity as plotted below also take the semantic relation to and between the aforementioned 21000 or so other words into account, they have simply been omitted from the plot.
+      Additionally, dimensionality reduction in form of Principal Component Analysis has been used to reduce the number of dimensions such that they can be plotted.  
+      </i>    
+    </p>
+</div>
+    <center>
+      <img src="images/Semantic Embeddings of Highlighted Thinkers, untitled.png"  ;max-width="100%";class="center">
+    </center>
+  
+  
+    <header class="w3-display-container w3-content w3-center" style="max-width:1500px">
+      <!-- Navbar (placed at the bottom of the header image) -->
+      <div class="w3-bar w3-light-grey w3-round w3-display-bottommiddle w3-hide-small" style="bottom:-16px">
+        <a href="/" class="w3-bar-item w3-button">Return to Home Page</a>
+      </div>
+    </header>
+
+    <!-- Navbar on small screens -->
+    <header class="w3-center w3-light-grey w3-padding-16 w3-hide-large w3-hide-medium">
+      <div class="w3-bar w3-light-grey">
+        <a href="/" class="w3-bar-item w3-button">Return to Home Page</a>
+      </div>
+    </header>
+  <!-- Contact
+  <div class="w3-light-grey w3-padding-large w3-padding-32 w3-margin-top" id="findings2">
+    <h3 class="w3-center">Contact</h3>
+    <hr>
+    <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus.</p>
+
+    <form action="/action_page.php" target="_blank">
+      <div class="w3-section">
+        <label>Name</label>
+        <input class="w3-input w3-border" type="text" required name="Name">
+      </div>
+      <div class="w3-section">
+        <label>Email</label>
+        <input class="w3-input w3-border" type="text" required name="Email">
+      </div>
+      <div class="w3-section">
+        <label>Message</label>
+        <input class="w3-input w3-border" required name="Message">
+      </div>
+      <button type="submit" class="w3-button w3-block w3-dark-grey">Send</button>
+    </form><br>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+
+  </div>
+	-->
+<!-- Navbar (placed at the bottom of the header image) 
+  <div class="w3-bar w3-light-grey w3-round w3-display-bottommiddle w3-hide-small" style="bottom:-16px">
+    <a href="/" class="w3-bar-item w3-button">Home Page</a>
+    <!-
+    <a href="#data" class="w3-bar-item w3-button">Data</a>
+    <a href="#exploration" class="w3-bar-item w3-button">Exploration</a> ->
+  </div>
+-->
+
+  <!-- End page content -->
+</div>
+</div>
+
+  
+
+</body>
+</html>
