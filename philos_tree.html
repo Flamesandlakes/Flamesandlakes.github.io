@@ -509,6 +509,95 @@
   </table>
   
   <br>
+  <p>
+  Though how centrally placed are each philosopher? Which philopshers are most central to the network? In this case, the visual representation of the network might be misleading or otherwise difficult to interpret.
+  There are ways to quantify centrality, called centrality measures. There are degree centrality, between centrality and eigenvector centrality. In brief, degree centrality measures the number of direct connections. Between centrality measures how many shortest paths between sets of node pairs in the entire network cross through this node. Eigenvector centrality measures how well-connected a node based on its neighbours and how well-connected they are.
+  However, these metrics applies to a undirected version of the network. They do not account for whether a connection shows influence to or from another philosopher.
+  <br><br>
+  There is a clear answer when looking at how philopshers measure on these metrics. Immanuel Kant is the most central figure regardless of which metric is used. There is also a high degree of overlap between the metrics in this case. We only observe 14 unique philopshers across the 30 top positions in total. 
+  </p>
+  <table 
+    border="1" 
+    class="dataframe" 
+    style="border-collapse: separate; border-spacing: 10px;"
+>
+    <thead>
+        <tr>
+          <th colspan="4" style="text-align: center; font-size: 1.2em; padding: 10px;">Top 10 Centrality Rankings</th>
+        </tr>
+        <tr style="text-align: center;">
+            <th style="padding: 10px;">&nbsp;</th>
+            <th style="padding: 10px;">Degree Centrality</th>
+            <th style="padding: 10px;">Between Centrality</th>
+            <th style="padding: 10px;">Eigenvector Centrality</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th style="padding: 10px;">1</th>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Immanuel_Kant">Immanuel Kant</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Immanuel_Kant">Immanuel Kant</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Immanuel_Kant">Immanuel Kant</a></td>
+        </tr>
+        <tr>
+            <th style="padding: 10px;">2</th>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Ludwig_Wittgenstein">Ludwig Wittgenstein</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Aristotle">Aristotle</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Aristotle">Aristotle</a></td>
+        </tr>
+        <tr>
+            <th style="padding: 10px;">3</th>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Leo_Strauss">Leo Strauss</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Karl_Marx">Karl Marx</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Karl_Marx">Karl Marx</a></td>
+        </tr>
+        <tr>
+            <th style="padding: 10px;">4</th>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Aristotle">Aristotle</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Ludwig_Wittgenstein">Ludwig Wittgenstein</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Georg_Wilhelm_Friedrich_Hegel">Georg Wilhelm Friedrich Hegel</a></td>
+        </tr>
+        <tr>
+            <th style="padding: 10px;">5</th>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Karl_Marx">Karl Marx</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Leo_Strauss">Leo Strauss</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Plato">Plato</a></td>
+        </tr>
+        <tr>
+            <th style="padding: 10px;">6</th>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Georg_Wilhelm_Friedrich_Hegel">Georg Wilhelm Friedrich Hegel</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Plato">Plato</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Friedrich_Nietzsche">Friedrich Nietzsche</a></td>
+        </tr>
+        <tr>
+            <th style="padding: 10px;">7</th>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Plato">Plato</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Georg_Wilhelm_Friedrich_Hegel">Georg Wilhelm Friedrich Hegel</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Jean-Jacques_Rousseau">Jean-Jacques Rousseau</a></td>
+        </tr>
+        <tr>
+            <th style="padding: 10px;">8</th>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Friedrich_Nietzsche">Friedrich Nietzsche</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Friedrich_Nietzsche">Friedrich Nietzsche</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/René_Descartes">René Descartes</a></td>
+        </tr>
+        <tr>
+            <th style="padding: 10px;">9</th>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Joseph_de_Maistre">Joseph de Maistre</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Martin_Heidegger">Martin Heidegger</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/David_Hume">David Hume</a></td>
+        </tr>
+        <tr>
+            <th style="padding: 10px;">10</th>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Martin_Heidegger">Martin Heidegger</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Bertrand_Russell">Bertrand Russell</a></td>
+            <td style="padding: 10px;"><a href="https://en.wikipedia.org/wiki/Martin_Heidegger">Martin Heidegger</a></td>
+        </tr>
+    </tbody>
+</table>
+
+  
+  <br>
     <p>
       Besides the connections, I also took the opportunity to collect the text from each philosopher's Wikipedia page. We can see how words are semantically related to other words by using word embeddings. 
       However after having removed common, less meaningful words also called stopwords, I still have more than 21000 unique words represented in the word embedding model. 
