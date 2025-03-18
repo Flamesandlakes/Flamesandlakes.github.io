@@ -291,8 +291,24 @@ So what does the development in price look like when we remove such outliers?
 </div>
 <div class="w3-content w3-padding-large w3-margin-top">
 
-  <h2 id="varianceInPrice">Why does medicine prices vary?</h2>
+  <h2 id="varianceInPrice">So, why does medicine prices vary?</h2>
   <!-- NOTE: PLACEHOLDER -> a lin reg might be used to isolate / control for all of these factors-->
+
+  <p>
+    We observe that medicine prices vary across different time windows and different medicinal type (in the form of ATC categories). And exactly what products are on the market and for how long vary too.  
+    <br><br>
+    To be fair, the data does not provide any insight into any internal or external factors such as production costs or product demand.
+    So I am bound to what is observed in the data itself. That is to say, my analysis is descriptive. 
+    <br><br>
+    I have modelled the pricing, which unfortuntely runs into the so-called curse of dimensionality. 
+    Simply put, there are too many variables and not sufficient enough data to represent each possible combination of these variables. 
+    Upon translating the model to relative pricing, it gives me an average prediction error of circa 260% compared to the actual price change. 
+    <br>
+    This also highlights the value of simplicity. For example, one of variables with the highest explanatory power is the price from two week before for that particular product. This of course requires access to such data, which limits insights into the long term. 
+
+    
+
+  </p>
 
   <br><br><br><br>
 </div>
