@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>American Politics on Youtube</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="custom_layout.css"> <!-- href="https://www.w3schools.com/w3css/4/w3.css"> -->
+
+<script>
+  function mean_over_time_removeOutliers(){
+    document.getElementById("PIC_mean_prod_over_time_wo_outliers")
+    .src="images/med_prices/mean_product_prices_individual_products_excl_outliers.png";
+    document.getElementById("outlierRemover")
+    .style.visibility="hidden";
+  } 
+
+  function means_by_atc_full(){
+    document.getElementById('PIC_prod_means_by_atc')
+    .src="images/med_prices/product_means_by_atc_wo_outliers_labadjusted_v3.png";
+  }
+    
+  function means_by_atc_zoomed(){
+    document.getElementById('PIC_prod_means_by_atc')
+    .src="images/med_prices/product_means_by_atc_wo_outliers_labadjusted_v3_sub400.png";
+  }
+  </script> 
+  
+ <!-- 
+  <style>
+   
+    .image-container {
+      text-align: center;
+      overflow: visible;
+      position: relative;
+      width: 100%;
+      height: auto; /* Limit height to viewport height */
+    }
+  
+    .responsive-img {
+      width: 180%;
+      height: auto;
+      display: block;
+      margin: -30%;
+    }
+      </style>
+  -->
+<style> 
+  .image-container {
+    text-align: center; 
+    overflow: visible; /* Prevent content from overflowing */
+    position: relative;
+    width: 100%;
+    margin: 20px 0; /* Add spacing between containers */
+  }
+
+  .responsive-img {
+    width: 120%; /* Make the image larger than the container */
+    height: auto;
+    display: block;
+    margin-left: -10%; /* Center the image by offsetting it */
+    position: relative;
+    z-index: 1; /* Ensure images are layered correctly */
+  }
+
+  h3 {
+    margin-top: 40px; /* Add spacing above headings */
+  }
+
+  div.scroll-container {
+    background-color: white;
+    overflow: auto;
+    white-space: nowrap;
+    padding: 10px;
+  }
+  
+  div.scroll-container img {
+    padding: 10px;
+  }
+
+  </style>
+
+</head>
+<body>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-center" style="max-width:1500px">
+  <img class="w3-image" src="https://images.pexels.com/photos/8850709/pexels-photo-8850709.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" alt="Election" width="60%" max-width=1280 style="opacity:0.7">
+  <!-- <img class="w3-image" src="https://images.pexels.com/photos/51929/medications-cure-tablets-pharmacy-51929.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Medicine" width="60%" max-width=1280 style="opacity:0.7">
+-->
+  <div class="w3-display-middle w3-padding-large w3-border w3-wide w3-text-light-grey w3-center">
+    <h1 class="w3-hide-medium w3-hide-small w3-xxxlarge" style="color: blue; opacity: 0.8; text-shadow: 4px -1px white, 6px -3px red"><b>ONLINE DISCOURSE & AMERICAN POLITICS</b></h1>
+    <h5 class="w3-hide-large" style="white-space:nowrap" style="color: black; opacity: 1;"><b>ONLINE DISCOURSE & AMERICAN POLITICS</b></h5>
+    <h3 class="w3-hide-medium w3-hide-small" style="color: white; opacity: 0.9; text-shadow: -1px -1px black, 1px 1px black, -1px 1px black, 1px -1px black, 
+    -2px -2px black, 2px 2px black, -2px 2px black, 2px -2px black">
+      <b>Political content on Youtube<br>before and after<br>the 2024 American Presidential Election</b></h3>
+  </div>
+  
+  <!-- Navbar (placed at the bottom of the header image) -->
+  <div class="w3-bar w3-light-grey w3-round w3-display-bottommiddle w3-hide-small" style="bottom:-16px">
+    <a href="/" class="w3-bar-item w3-button">Return to Home Page</a>
+    <!--
+    <a href="#data" class="w3-bar-item w3-button">Data</a>
+    <a href="#exploration" class="w3-bar-item w3-button">Exploration</a> -->
+  </div>
+</header>
+
+<!-- Navbar on small screens -->
+<div class="w3-center w3-light-grey w3-padding-16 w3-hide-large w3-hide-medium">
+<div class="w3-bar w3-light-grey">
+  <a href="/" class="w3-bar-item w3-button">Return to Home Page</a>
+  <!-- 
+  <a href="#data" class="w3-bar-item w3-button">Data</a>
+  <a href="#exploration" class="w3-bar-item w3-button">Exploration</a>
+  -->
+</div>
+</div>
+
+
+<!-- Side navigation -->
+<div class="navbar">
+  <a href="#">Introduction</a>
+  <a href="#wordFrequencies">What do they say?</a>
+  <a href="#topicalAnalysis">What topics are talked about?</a>
+  <a href="#sentimentOverTime">What are their sentiments?</a>
+  <a href="#dialogueUMAP">How similar are the videos to each other?</a>
+  <!--
+  <a href="#timeOnMarket">How long does products stay on market?</a>
+  <a href="#varianceInPrice">Why does medicine prices vary?</a>
+  -->
+  <a href="/">Return to Home Page</a>
+</div>
+
+
+<!-- Page content -->
+
+<div class="w3-content w3-padding-large w3-margin-top">
+
+  <!-- Title -->
+  <h1  id="data">Introduction</h1>
+    <p>
+      2024 was an election year in the United States of America - the world's second largest democracy. Political discourse is arguably central to democratic societies. And in the age of digital media, it is hard to understate the role that online content plays in political discourse. 
+      <br><br>
+      There are many facets of online political discourse. I will be focusing on political commentators on Youtube. Though depending on the definition, they may also be considered to be online influencers. 
+    </p>
+    <p>
+      The data used in this project is collected from Youtube channels representating various left- and right-leaning political commentators.</a>. 
+      It covers <b>12795</b> individual videos with their corresponding transcripts. The total runtime of these videos are <b>4868.3</b> hours, which translates to more than 202 days worth of watch time.
+      The data is sourced from a selection of 10 Youtube channels with 9 corresponding political commentators as a pair of channels belong to the same commentator. As such, this project is closer to representating a snapshot than the full picture of the online political discourse, despite the aforementioned quantity of data.  
+      I will primarily focus on the contents of these video transcripts. I am aware that some of these transcripts may be based on auto-generated subtitles, which may be prone to occassional misannotations. I am assuming that these are minor in the grand scheme of things. 
+      
+    </p>
+    <p>
+      The data includes videos published on their respective channels, in the time window spanning from the 1st of June 2024 to the 18th of March 2025.
+      <br>
+      Additional variables on each video include the video title (at the time of data collection), the channel that posted it, the length of the video, when it was published alongside a couple of other variables.
+      <br> 
+    </p>
+      
+    </p>
+    <p> 
+     
+    </p><p>
+   </p><p>
+    
+  </p>
+</div>
+<div class="w3-content w3-padding-large w3-margin-top" >
+  <h2 id="wordFrequencies">What do they say?</h2>
+
+  <p>
+    That is central to what I want to know. Though I am equally interested in partisan divides, i.e. whether the content of videos differ based on the political leaning of the creator.
+    A qualitative approach may be considered if not for the scale of the data. This is to the benefit of quantitative textual analysis, which may reveal insights that otherwise would be infeasible to uncover. 
+    <br><br>
+    The most straightforward strategy to begin with is counting words. Not manually, of course.
+    <br>
+    It is noted that super common words, that are otherwise present to pad out or structure sentences, are left out (or at least are supposed to be in theory ...). This includes words such as "is", "are", "not", "he", "she", "it", "you", "me" etc.
+    <br> Additionally, all words are processed as lowercase including names and acronyms.
+    <br><br>
+  </p>
+    Now, the ten most frequent words across the 12795 videos are:<br>
+    
+    <ol>
+      <li><b>like</b> - 209229 times.</li>
+      <li><b>uh</b> - 162406 times.</li>
+      <li><b>know</b> - 161583 times.</li>
+      <li><b>people</b> - 130855 times.</li>
+      <li><b>going</b> - 127803 times.</li>
+      <li><b>trump</b> - 116439 times.</li>
+      <li><b>thats</b> -  116390 times.</li>
+      <li><b>dont</b> -  108821 times.</li>
+      <li><b>right</b> - 97551 times.</li>
+      <li><b>think</b> - 95087 times.</li>
+    </ol>
+    
+    <p>
+    Well, uh, it seems like I have not accounted for interjections such as "uh", which arguably is not meaningful on its own. 
+    Though to play devil's advocate, that applies to most words without a surrounding sentence.
+    [These cases might be left out in later topical analysis, where interjections does not relate nor convey the topic at hand.]
+    </p>
+    <p>
+    As it pertains to potential partisan differences, 
+    the respective top ten words for left-leaning and right-leaning commentators are very similar. 
+    The definition of common words is still somewhat loose, as there is definitely an argument to be made, 
+    that some of these words are still filler words. 
+    I would consider "uh","thats", "dont" and "going" as examples of such. 
+    The case is less clear regarding the other words. The one word I would certainly not consider to be filler is "trump" (or "Trump").
+
+
+    </p>
+    <!-- [[NOTE: What is the word count per video per leaning?]] -->
+    <br><br>
+    
+  <div style="display: inline-block">
+    Words counts among left-leaning channels 
+    <ol>
+      <li><b>like</b> - 100257 times.</li>
+      <li><b>know</b> - 72249 times.</li>
+      <li><b>uh</b> - 64264 times.</li>
+      <li><b>trump</b> - 62017 times.</li>
+      <li><b>going</b> - 55016 times.</li>
+      <li><b>people</b> - 54646 times.</li>
+      <li><b>thats</b> - 51287 times.</li>
+      <li><b>dont</b> -  46238 times.</li>
+      <li><b>right</b> - 45282 times.</li>
+      <li><b>think</b> - 38102 times.</li>
+    </ol>
+  </div>
+  <div style="display: inline-block"> 
+    &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+    &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+  </div>
+  <div style="display: inline-block">
+    Words counts among right-leaning channels 
+  <ol>
+    <li><b>like</b> - 108972 times.</li>
+    <li><b>uh</b> - 98142 times.</li>
+    <li><b>know</b> - 89334 times.</li>
+    <li><b>people</b> - 76209 times.</li>
+    <li><b>going</b> - 72787 times.</li>
+    <li><b>thats</b> - 65103 times.</li>
+    <li><b>dont</b> -  62583 times.</li>
+    <li><b>think</b> -  56985 times.</li>
+    <li><b>trump</b> - 54422 times.</li>
+    <li><b>right</b> - 52269 times.</li>
+  </ol>
+</div>  </div>
+
+    <br><br>
+<!--
+    <div class="w3-content w3-padding-large w3-margin-top">
+  <h2 id="topicalAnalysis">What topics do they cover?</h2>
+
+
+</div>
+-->
+
+<div class="w3-content w3-padding-large w3-margin-top">
+<h2 id="sentimentOverTime">What are their sentiments?</h2>
+Sentiments describes what kind of emotion is expressed based on the language used. 
+In this case, I am applying the NLTK Sentiment Intensity Analyzer to the sentence of each video transcript and find their compounded sentiment. 
+As noted, this is based on intensity ranging from negative, to neutral, and to positve. 
+This may be considered a bit black-and-white (and a bit of grey), as I am unable to discern whether a negative sentiment is due to anger, fear or a different negative emotion.
+<br><br>
+Note that there is a scrollbar for each of the timelines depicted below. To see the timeline in full, you may zoom out via your browser settings or right-click to view in a seperate window.  
+
+</div>
+</div>
+
+  <center><h3>Average sentiment over time</h3></center>
+  <div class="scroll-container">
+    <img src="images/political_yt/sentiment over time_overall_by YWeek_2024W22_2025W08_fsize44 6.png" ;max-width="100%";class="center">
+  </div>
+
+  <div class="w3-content w3-padding-large w3-margin-top"> 
+    At no point does the average sentiment cross into the negative values. There are a couple of peaks and downward turns, and them seem to be less stable after early August (Week 32) of 2024.
+    <br><br>
+    I am also interested in how this changes over time within partisan lines.
+  </div>
+
+  <center><h3>Average sentiment over time by political leaning</h3></center>
+ 
+
+  <div class="scroll-container">
+  <img src="images/political_yt/sentiment over time_grouped by leaning_by YWeek_2024W22_2025W08_fsize44 6.png";max-width="100%";class="center">
+</div> 
+
+<!-- 
+
+    <center><h3>Average sentiment over time by each channel</h3></center>
+  <div class="scroll-container">
+    <img src="images/political_yt/sentiment over time_grouped by channel_by YWeek_2024W22_2025W08_fsize44 6.png" ;max-width="100%";class="center">
+  </div>
+-->
+
+
+
+
+<div class="w3-content w3-padding-large w3-margin-top">
+  <h2 id="dialogueUMAP">How similar are the videos to each other?</h2>
+  <p>
+  In order to determine how similar videos are to each other, I need a way to compare videos, specifically their transcripts. 
+  In this case, I am using TF-IDF, which basically meaure the importance of each word in a video relative to its overall occurence across all video transcripts.  
+  If a word is observed multiple times within a particular transcript, while the word otherwise is not common among the other transcripts, then the word is measured to have a higher importance to the particular transcript. 
+  These measures are then vectorized and then reduced to two dimensions to allow for 2D visualisation. 
+  This last step involves UMAP, which is a dimensionality reduction technique that conserves the neighborhoods of each data point 
+  - that is the videos that are similar to each other in regards to the words that important to them.
+  </p>
+  <p>
+  I emphasize that the values associated with a video's coordinates within the UMAP representation carry no meaning outside of context. What matters is what other videos are closer to it, i.e. the videos that it form a cluster or "neighbourhood" with. 
+  </p>
+  <p>
+    Clustering techniques may be employed to extract these clusters. But first, I want to interpret and infer the characteristics of clusters visually through additional variables. This include the time for when the videos were published, their sentiment, the leaning of their respective channels among other factors.
+  </p>
+</div>
+<!-- 
+So,
+1. UMAP graded by time
+2. UMAP graded by sentiment
+3. UMAP colored by leaning
+4. UMAP colored by channel
+...
+5. UMAP by clusters
+
+Overvej at rename title, så reflekterer det specifikke plot
+-->
+<center>
+  <img src="images/political_yt/UMAP_timeline gradient_w colorbar_Political Commentary.png";max-width="100%";class="center">
+</center>
+
+<!-- --> 
+<div class="w3-content w3-padding-large w3-margin-top">
+<p>
+  Let us first look at the structure of the data points, each representating a video transcript. In this regard, there is a global structure as well as multiple local structures. 
+  Foremost, there is a central cluster with minimal spaced seperation, potentially consisting of multiple subclusters depending on how granular our definition is. 
+  This center is surrounded my chained, or "snake-like", clusters. 
+  Does this mean that these videos in the clustered in the center likewise are central to the political discourse? 
+  No, it simply indicates their close proximity to each other relative to all other videos.  
+  The contrast to note lies in that multiple videos are closer to each other, where as the videos in the chains have neighbouring videos that are similar but are further from their neighbours. 
+  This may point to some sequentiel order in which the content of the videos gradually shifts. 
+</p>
+
+  <p>
+The color gradient represents the time of publishing counted in the number of days since June 1st (the start of the time window from which the data has been collected from). 
+For reference, the number of days from June 1st to November 5th (Election Day) is 157 days. 
+</p>
+<p>
+It is possible to visually interpret a temporal divide, which 
+ - based on the gradient change - is before and after the Election. 
+ This also supports the notion that the chained clusters represents a gradual shift, specifically occuring over time. 
+ That said, the divide is not a clear break nor do clusters necessarily only consist of videos that are temporally adjacent. 
+ 
+</p>
+</div>
+<!-- -->
+
+<center>
+<img src="images/political_yt/UMAP_sentiment gradient_w colorbar_Political Commentary.png";max-width="100%";class="center">
+</center>
+
+<div class="w3-content w3-padding-large w3-margin-top">
+<p>
+In extension of the timelines plotted earlier, we already know that the average video holds a positive sentiment. 
+
+<br>
+Behind the scenes I am working on finding and adjusting a color scheme, where the color of the negative cases more clear stand out among the majority of positive cases.
+</p>
+</div>
+<center>
+  <img src="images/political_yt/UMAP_partisan leaning_w legend lower right_Political Commentary.png"; max-width="100%";class="center">
+</center>
+
+<div class="w3-content w3-padding-large w3-margin-top">
+<p>
+The chain-shaped clusters belong for the most part to a specific leaning. 
+This could suggest a partisan difference in what topics they cover, or in the very least the words and language, between each side. 
+However there are some intersections, not to mention the center, where videos from each leaning are mixed among each other. Even so, it is noteworthy how most of the clusters are relatively seperated on the basis of political leaning. 
+
+</p>
+</div>
+
+<br>
+<br>
+<br>
+  
+  
+    <header class="w3-display-container w3-content w3-center" style="max-width:1500px">
+      <!-- Navbar (placed at the bottom of the header image) -->
+      <div class="w3-bar w3-light-grey w3-round w3-display-bottommiddle w3-hide-small" style="bottom:-16px">
+        <a href="/" class="w3-bar-item w3-button">Return to Home Page</a>
+      </div>
+    </header>
+
+    <!-- Navbar on small screens -->
+    <header class="w3-center w3-light-grey w3-padding-16 w3-hide-large w3-hide-medium">
+      <div class="w3-bar w3-light-grey">
+        <a href="/" class="w3-bar-item w3-button">Return to Home Page</a>
+        <!-- 
+        <a href="#data" class="w3-bar-item w3-button">Data</a>
+        <a href="#exploration" class="w3-bar-item w3-button">Exploration</a>
+        -->
+      </div>
+    </header>
+  <!-- Contact
+  <div class="w3-light-grey w3-padding-large w3-padding-32 w3-margin-top" id="findings2">
+    <h3 class="w3-center">Contact</h3>
+    <hr>
+    <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus.</p>
+
+    <form action="/action_page.php" target="_blank">
+      <div class="w3-section">
+        <label>Name</label>
+        <input class="w3-input w3-border" type="text" required name="Name">
+      </div>
+      <div class="w3-section">
+        <label>Email</label>
+        <input class="w3-input w3-border" type="text" required name="Email">
+      </div>
+      <div class="w3-section">
+        <label>Message</label>
+        <input class="w3-input w3-border" required name="Message">
+      </div>
+      <button type="submit" class="w3-button w3-block w3-dark-grey">Send</button>
+    </form><br>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+
+  </div>
+	-->
+<!-- Navbar (placed at the bottom of the header image) 
+  <div class="w3-bar w3-light-grey w3-round w3-display-bottommiddle w3-hide-small" style="bottom:-16px">
+    <a href="/" class="w3-bar-item w3-button">Home Page</a>
+    <!-
+    <a href="#data" class="w3-bar-item w3-button">Data</a>
+    <a href="#exploration" class="w3-bar-item w3-button">Exploration</a> ->
+  </div>
+-->
+
+  <!-- End page content -->
+</div>
+</div>
+
+  
+
+</body>
+</html>
