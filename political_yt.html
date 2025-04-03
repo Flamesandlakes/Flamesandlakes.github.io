@@ -268,22 +268,51 @@
   For the third pair of lists, "like", "know" and "uh" is compared to "like", "uh" and "know". 
   As we ignore the order in which the words appear, the words of the two lists are identical to each other.
   The difference is once again zero.
+</p>
+<p>
+  Each step introduces two words, resulting in one of four outcomes. <br>
+  <ol>
+  <li>The words are different to each other and does not appear on the other existing list of words. The difference is increased by one.</li>
+  <li>Each word are identical to each other. The existing difference neither increases nor decreases.</li>
+  <li>Each word are different, but they have each previously been listed on the other list. The difference is decreased by one.</li>
+  <li>Each word are different, but one is already listed on the other list, while the inverse does not apply to the second word. The existing difference neither increases nor decreases. 
+    This outcome may be thought of a combination of the first and third outcome, but spread out between a prior pair and the current pair of words.</li>
+</ul>
   <br><br>
   We can visualise this progression in number of differences through a bar plot.   
 </p>
 <img src="images/political_yt/set difference_among top words_left vs right_default stopwords removed_first 10.png">
 <p>
-  Once the entire respective top 10 lists are compared to each other, there are no differences in terms of the words contained one list but not in the other.
+  Once the entire respective top 10 lists are compared to each other, there are no differences in terms of the words contained one list but not in the other. 
   <br><br>
   Now, what happens when we observe the first 100 lists. 
   Though remember that the further down the list we go, the less frequent these words will be compared to the prior steps. 
   There will theoretically be a point at which a difference in observed frequency is marginal. 
-  This is something I will delve into later, but for now, the top lists of the smaller sizes are more generally worthy of note (though unless stopwords are present) until we reach a (yet to be determined) point.  
+  This is something I will delve into later, but for now, the top lists of the smaller sizes are more generally worthy of note (though unless stopwords are present) until we reach a (yet to be determined) point.
+  The top third most common word will simply gnerally play a much more central role in the content than the 117th most common word.    
 </p>
 <img src="images/political_yt/set difference_among top words_left vs right_default stopwords removed_first 100.png">
 <p>
-  [PLACEHOLDER]
+  While the third outcome also occurs after this point, the other outcomes are more common, specically the first outcome.
+  The top 10 lists are revealed to be quite rare, if not unique, in this bigger range of list sizes.  
+  All comparisons between top lists beyond the 10th have atleast one difference, with a tendency to increase more than decline. 
+  That said, there are a least of couple sequential sizes, where the number of differences is unchanged.
+  <br>
+  After 100 comparisons, there are 8 words that are unique to their respective list. 
+  That means that they share the other 92 words.  
+  As for the words that make up the difference, they are:
+ 
+</p> 
+[PLACEHOLDER]
+<!-- INSERT table with 10 rows (incl one for header and one for subdivisions) and 2 or 3 columns -->
+<br><br>
+<p>
+  So far, the increase in difference suggests that the vocabulary of each side is distinct. 
+  Though approaching linguistic differences based on top lists is inherently limited and even potenially misleading. 
+  The rate of increase (or decrease) can never surpass 1 per step. 
+  Likewise, the plot might give the illusion of a steady climb, though the possible difference is capped by the size of the top lists that are being compared.
 </p>
+
 <img src="images/political_yt/set difference_among top words_left vs right_default stopwords removed_first 100000.png">
 <p>
   [PLACEHOLDER]
