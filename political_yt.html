@@ -174,7 +174,8 @@
     <br><br>
     The most straightforward strategy to begin with is counting words. Not manually, of course.
     <br>
-    It is noted that super common words, that are otherwise present to pad out or structure sentences, are left out (or at least are supposed to be in theory ...). This includes words such as "is", "are", "not", "he", "she", "it", "you", "me" etc.
+    It is noted that super common words, that are otherwise present to pad out or structure sentences, are left out (or at least are supposed to be in theory ...). 
+    These words are called stopwords and they include words such as "is", "are", "not", "he", "she", "it", "you", "me" etc.
     <br> Additionally, all words are processed as lowercase including names and acronyms.
     <br><br>
   </p>
@@ -268,8 +269,24 @@
   As we ignore the order in which the words appear, the words of the two lists are identical to each other.
   The difference is once again zero.
   <br><br>
-  We can visualise this progression in number of differences through a bar plot. 
-  
+  We can visualise this progression in number of differences through a bar plot.   
+</p>
+<img src="images/political_yt/set difference_among top words_left vs right_default stopwords removed_first 10.png">
+<p>
+  Once the entire respective top 10 lists are compared to each other, there are no differences in terms of the words contained one list but not in the other.
+  <br><br>
+  Now, what happens when we observe the first 100 lists. 
+  Though remember that the further down the list we go, the less frequent these words will be compared to the prior steps. 
+  There will theoretically be a point at which a difference in observed frequency is marginal. 
+  This is something I will delve into later, but for now, the top lists of the smaller sizes are more generally worthy of note (though unless stopwords are present) until we reach a (yet to be determined) point.  
+</p>
+<img src="images/political_yt/set difference_among top words_left vs right_default stopwords removed_first 100.png">
+<p>
+  [PLACEHOLDER]
+</p>
+<img src="images/political_yt/set difference_among top words_left vs right_default stopwords removed_first 100000.png">
+<p>
+  [PLACEHOLDER]
 </p>
 </div>
 
