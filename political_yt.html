@@ -74,8 +74,24 @@
   }
   
   div.scroll-container img {
-    padding: 10px;
+    padding: 50px;
   }
+
+  td {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+  }
+
+  td > tr:nth-child(0) {
+    font-weight: bold;
+ }
+
+ tr + td {
+  font-weight: bold;
+}
 
   </style>
 
@@ -137,15 +153,32 @@
 
   <!-- Title -->
   <h1  id="data">Introduction</h1>
+    
     <p>
       2024 was an election year in the United States of America - the world's second largest democracy. Political discourse is arguably central to democratic societies. And in the age of digital media, it is hard to understate the role that online content plays in political discourse. 
       <br><br>
-      There are many facets of online political discourse. I will be focusing on political commentators on Youtube. Though depending on the definition, they may also be considered to be online influencers. 
+      There are many facets of online political discourse. 
+      I will be focusing on political commentators on Youtube. Though depending on the definition, they may also be considered to be online influencers. 
     </p>
+
+    <h3>
+      What I am curious about
+    </h3> 
     <p>
-      The data used in this project is collected from Youtube channels representating various left- and right-leaning political commentators.</a>. 
-      It covers <b>12795</b> individual videos with their corresponding transcripts. The total runtime of these videos are <b>4868.3</b> hours, which translates to more than 202 days worth of watch time.
-      The data is sourced from a selection of 10 Youtube channels with 9 corresponding political commentators as a pair of channels belong to the same commentator. As such, this project is closer to representating a snapshot than the full picture of the online political discourse, despite the aforementioned quantity of data.  
+    At the heart of it all, I am curious about whether and how commentators mirror each other. 
+    In terms of sentiments, do they follow the same, inversed or different paths as time progresses.
+    In addition, I wonder there was a shift after the election, 
+    and if so, immediately after or at a different time such as after the inaugeration.  
+    </p>
+
+
+    <h3>About the data</h3>
+    <p>
+      The data used in this project is collected from Youtube channels representating various left- and right-leaning political commentators.</a>.
+      On a sidenote in terms of terminology, I will refrain from labelling commentators as being Democrats or Republicans as this does not necessarily align with how they politically identify themselves.
+      The dataset covers <b>12795</b> individual videos with their corresponding transcripts. The total runtime of these videos are <b>4868.3</b> hours, which translates to more than 202 days worth of watch time.
+      The data is sourced from a selection of 10 Youtube channels with 9 corresponding political commentators as a pair of channels belong to the same commentator. 
+      As such, this project is closer to representating a snapshot than the full picture of the online political discourse, despite the aforementioned quantity of data.  
       I will primarily focus on the contents of these video transcripts. I am aware that some of these transcripts may be based on auto-generated subtitles, which may be prone to occassional misannotations. 
       I am assuming that these are minor in the grand scheme of things. But I will also later validate sampled transcripts to evaluate the validity of these transcripts.  
       
@@ -158,10 +191,12 @@
     </p>
       
     </p>
-    <p> 
-     
-    </p><p>
-   </p><p>
+    
+
+    <p> </p>
+    <p></p>
+   
+   <p>
     
   </p>
 </div>
@@ -289,7 +324,7 @@
   Though remember that the further down the list we go, the less frequent these words will be compared to the prior steps. 
   There will theoretically be a point at which a difference in observed frequency is marginal. 
   This is something I will delve into later, but for now, the top lists of the smaller sizes are more generally worthy of note (though unless stopwords are present) until we reach a (yet to be determined) point.
-  The top third most common word will simply gnerally play a much more central role in the content than the 117th most common word.    
+  The top third most common word will simply generally play a much more central role in the content than the 117th most common word.    
 </p>
 <img src="images/political_yt/set difference_among top words_left vs right_default stopwords removed_first 100.png">
 <p>
@@ -301,19 +336,143 @@
   After 100 comparisons, there are 8 words that are unique to their respective list. 
   That means that they share the other 92 words.  
   As for the words that make up the difference, they are:
- 
-</p> 
-[PLACEHOLDER]
-<!-- INSERT table with 10 rows (incl one for header and one for subdivisions) and 2 or 3 columns -->
-<br><br>
+</p> <br>
+
+
+<div style="display: inline-block;">
+
+  Words unique to left-leaning channels' top 100
+<table border="1" class="dataframe">
+  <thead>
+    
+    <tr style="text-align: center; padding: 10px;">
+      <th style = "font-weight: bold;">Word</th>
+      <th>Rank<br> among <br>&nbsp;&nbsp; the Left &nbsp;&nbsp;&nbsp;</th>
+      <th>Rank<br>among <br>&nbsp;&nbsp;&nbsp; the Right &nbsp;&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody style="text-align: center;">
+    <tr>
+      <td>speaker</td>
+      <td>55</td>
+      <td>1786</td>
+    </tr>
+    <tr>
+      <td>trumps</td>
+      <td>66</td>
+      <td>194</td>
+    </tr>
+    <tr>
+      <td>hey</td>
+      <td>81</td>
+      <td>307</td>
+    </tr>
+    <tr>
+      <td>money</td>
+      <td>82</td>
+      <td>108</td>
+    </tr>
+    <tr>
+      <td>stuff</td>
+      <td>86</td>
+      <td>114</td>
+    </tr>
+    <tr>
+      <td>election</td>
+      <td>87</td>
+      <td>119</td>
+    </tr>
+    <tr>
+      <td>vote</td>
+      <td>94</td>
+      <td>128</td>
+    </tr>
+    <tr>
+      <td>war</td>
+      <td>95</td>
+      <td>126</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div style="display: inline-block"> 
+  &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+  &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+</div>
+
+
+<div style = "display:inline-block;">
+  Words unique to right-leaning channels' top 100
+  <table border="1" class="dataframe">
+    <thead>
+      <tr style="text-align: center;">
+        <th style = "padding: 10px;">Word</th>
+      <th>Rank<br> among <br>&nbsp;&nbsp; the Left &nbsp;&nbsp;&nbsp;</th>
+      <th>Rank<br>among <br>&nbsp;&nbsp;&nbsp; the Right &nbsp;&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody style="text-align: center;">
+    <tr>
+      <td>world</td>
+      <td>109</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <td>american</td>
+      <td>103</td>
+      <td>81</td>
+    </tr>
+    <tr>
+      <td>put</td>
+      <td>102</td>
+      <td>84</td>
+    </tr>
+    <tr>
+      <td>last</td>
+      <td>112</td>
+      <td>85</td>
+    </tr>
+    <tr>
+      <td>fact</td>
+      <td>116</td>
+      <td>93</td>
+    </tr>
+    <tr>
+      <td>work</td>
+      <td>115</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <td>media</td>
+      <td>101</td>
+      <td>98</td>
+    </tr>
+    <tr>
+      <td>white</td>
+      <td>172</td>
+      <td>100</td>
+    </tr>
+  </tbody>
+  </table>
+
+</div>
 <p>
-  So far, the increase in difference suggests that the vocabulary of each side is distinct. 
+  The difference in how the words rank by popularity between each side indicates "delays" or "displacement", for lack of a better word.
+  Some words simply are more popular for one side than the other, 
+  but that does not mean that they are omitted or even rare by the other side of the political aisle.
+  See "media". It is the 98th most popular word among the right and just outside the top 100 among the left.
+  The notable exceptions are cases such as "speaker" and "white". I will be looking into quanitfying disparities in ranking later.
+</p>
+
+<p>
+  So far, the increase in difference suggests that the vocabulary of each side is distinct, though not completely unique from each other. 
   Though approaching linguistic differences based on top lists is inherently limited and even potenially misleading. 
   The rate of increase (or decrease) can never surpass 1 per step. 
   Likewise, the plot might give the illusion of a steady climb, though the possible difference is capped by the size of the top lists that are being compared.
 </p>
 
-<img src="images/political_yt/set difference_among top words_left vs right_default stopwords removed_first 100000.png">
+<img src="images/political_yt/set difference_among top words_left vs right_default stopwords removed_first 20000.png">
 <p>
   [PLACEHOLDER]
 </p>
@@ -340,7 +499,14 @@ Note that there is a scrollbar for each of the timelines depicted below. To see 
 </div>
 </div>
 
-  <center><h3>Average sentiment over time</h3></center>
+
+  <div class="w3-content w3-padding-large w3-margin-top">
+    <h3>Average sentiment over time</h3>
+    <img src="images/political_yt/sentiment over time_overall_by YWeek_2024W22_2025W08.png" ;max-width="100%">
+  <br><br>
+  See below zoomed-in and scrollable verion of this plot.
+  </div>
+
   <div class="scroll-container">
     <img src="images/political_yt/sentiment over time_overall_by YWeek_2024W22_2025W08_fsize44 6.png" ;max-width="100%";class="center">
   </div>
@@ -351,8 +517,13 @@ Note that there is a scrollbar for each of the timelines depicted below. To see 
     I am also interested in how this changes over time within partisan lines.
   </div>
 
-  <center><h3>Average sentiment over time by political leaning</h3></center>
  
+  <div class="w3-content w3-padding-large w3-margin-top">
+    <h3>Average sentiment over time by political leaning</h3>
+    <img src="images/political_yt/sentiment over time_grouped by leaning_by YWeek_2024W22_2025W08.png" ;max-width="100%">
+  <br><br>
+  See below for zoomed-in and scrollable verion of this plot.
+  </div>
 
   <div class="scroll-container">
   <img src="images/political_yt/sentiment over time_grouped by leaning_by YWeek_2024W22_2025W08_fsize44 6.png";max-width="100%";class="center">
