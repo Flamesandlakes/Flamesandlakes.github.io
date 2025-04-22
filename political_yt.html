@@ -93,6 +93,37 @@
   font-weight: bold;
 }
 
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  font-style: normal;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 320px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  font-weight: normal;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+
+
   </style>
 
 </head>
@@ -209,7 +240,7 @@
     <br><br>
     The most straightforward strategy to begin with is counting words. Not manually, of course.
     <br>
-    It is noted that super common words, that are otherwise present to pad out or structure sentences, are left out (or at least are supposed to be in theory ...). 
+    It is noted that super common words, that are otherwise present to pad out or structure sentences, <em class = "tooltip">are left out<span class ="tooltiptext">Or are at least supposed to be left out in theory.</span> </em>. 
     These words are called stopwords and they include words such as "is", "are", "not", "he", "she", "it", "you", "me" etc.
     <br> Additionally, all words are processed as lowercase including names and acronyms.
     <br><br>
@@ -290,7 +321,7 @@
 </p>
 <p>
   What if we quantify the differences between these lists instead? 
-  For any given number - with that number how many words from the top we list - I can count how many words appear in one list but not in the other. 
+  For any given number - with that number being how many words from the top we list - I can count how many words appear in one list but not in the other. 
   Let us look at the first three comparisons as an example. 
   The first comparison is between the top 1 word of each leaning. 
   That is "like" in the case of both lists. The difference is zero.
@@ -492,7 +523,7 @@
 Sentiments describes what kind of emotion is expressed based on the language used. 
 In this case, I am applying the NLTK Sentiment Intensity Analyzer to the sentence of each video transcript and find their compounded sentiment. 
 As noted, this is based on intensity ranging from negative, to neutral, and to positve. 
-This may be considered a bit black-and-white (and a bit of grey), as I am unable to discern whether a negative sentiment is due to anger, fear or a different negative emotion.
+This may be considered a bit black-and-white (and a bit of grey), as I am unable to discern for example whether a negative sentiment is due to anger, fear or a different negative emotion.
 <br><br>
 Note that there is a scrollbar for each of the timelines depicted below. To see the timeline in full, you may zoom out via your browser settings or right-click to view in a seperate window.  
 
@@ -551,10 +582,13 @@ Note that there is a scrollbar for each of the timelines depicted below. To see 
   - that is the videos that are similar to each other in regards to the words that important to them.
   </p>
   <p>
-  I emphasize that the values associated with a video's coordinates within the UMAP representation carry no meaning outside of context. What matters is what other videos are closer to it, i.e. the videos that it form a cluster or "neighbourhood" with. 
+  I emphasize that the values associated with a video's coordinates within the UMAP representation carry no meaning outside of context. 
+  What matters is what other videos are closer to it, i.e. the videos that it form a cluster or "neighbourhood" with. 
   </p>
   <p>
-    Clustering techniques may be employed to extract these clusters. But first, I want to interpret and infer the characteristics of clusters visually through additional variables. This include the time for when the videos were published, their sentiment, the leaning of their respective channels among other factors.
+    Clustering techniques may be employed to extract these clusters.
+    But first, I want to interpret and infer the characteristics of clusters visually through additional variables. 
+    This include the time for when the videos were published, their sentiment, the leaning of their respective channels among other factors.
   </p>
 </div>
 <!-- 
@@ -618,10 +652,104 @@ Behind the scenes I am working on finding and adjusting a color scheme, where th
 <p>
 The chain-shaped clusters belong for the most part to a specific leaning. 
 This could suggest a partisan difference in what topics they cover, or in the very least the words and language, between each side. 
-However there are some intersections, not to mention the center, where videos from each leaning are mixed among each other. Even so, it is noteworthy how most of the clusters are relatively seperated on the basis of political leaning. 
+However there are some intersections, not to mention the center, where videos from each leaning are mixed among each other. 
+Even so, it is noteworthy how most of the clusters are relatively seperated on the basis of political leaning. 
 
 </p>
+
+<h3 id = "cluster_ideals">Cluster analysis</h3>
+<p>
+  I have so far visually analysed the plotted data. 
+  This have involved on approximate descriptions of clusters, 
+  which are difficult to distinctively seperate based on said descriptions alone.
+  That said, there are clustering algorithms that each provide a way to assign cluster membership.
+  These rely predominantly on unsupervised learning and are fine-tuned according to intrinsic evaluation metrics.
+  As such, we should question what sort of truth of the data a given clustering algorithm reveals.
+  Ideally, data points that are similar should belong to the same cluster, 
+  and the inverse applies for data points disimilar to each other.
+  Thus the distance between members of the same cluster should be short,
+  while the distance to non-members should be bigger if not great.
+</p>
+
+<p>
+  I will highlight two clustering algorithms, 
+  one that is centroid-based, K-means, and another that is density-based,<em class="tooltip"> in the form of HDBSCAN.
+    <span class = tooltiptext>Note: HDBSCAN also contains hiearchical elements.</span>
+  </em>
+  To be transparent, 
+  I have a clear preference among these two algorithms based on the compatability with the nature of the data itself.
+  I am showcasing both as there is still some utility to be illustrated by the first case. 
+</p>
+
+<p>The K-means algorithm is relatively straightforward. 
+  <br>First, randomly assign the position of a <em class="tooltip">K-number<span class = "tooltiptext">K is pre-selected. Intrinsic evaluation metrics may inform which value for K is best.</span></em> of cluster centers. 
+  <br>Second, for each data point, assign them to the closest center. 
+  <br>Third, update the positions of the centers such that they correspond to the mean position of the newly assigned clusters.
+  <br>Repeat steps two and three until there are no changes in assigned membership.
+  <br> 
+</p>
+<p>
+  In this case, I arrive at a clustering with 9 centers. 
+  That results in the following clustering.
+</p>
+
 </div>
+
+<center>
+  <img src="images/political_yt/UMAP_kmeans_k9_centroids in voronoi diagram_v2_Political Commentary.png"; max-width="100%";class="center">
+</center>
+
+<div class="w3-content w3-padding-large w3-margin-top">
+<p>
+The colored diamond shapes indicate the position of their respective cluster center. 
+The diamonds themselves does not necessarily correspond to any actual data points. 
+But they do partition the space into 9 distinct regions. 
+Here lines are drawn according to which cluster center is closest. 
+As a sidenote, outside of the two clusters surrounded on all sides, these lines run to 
+<em class="tooltip">infinity.<span class = "tooltiptext">Of course, this have no implications for a UMAP projection.</span></em>
+</p>
+
+<p>
+By now, you might have noticed some discrepancies, namely with <a href = "#cluster_ideals">the previously mentioned cluster ideals</a>.  
+There are multiple instances where members of a cluster are in closer proximity to members of a different cluster relative to their own assigned cluster.
+The K-means does not quite capture the chain-like structures that I noted earlier. 
+With its centroid-based cluster assignment, the K-means clustering algorithm excells at partioning the space into more manageable regions. 
+But it fails to capture neighbourhoods that do not conform to a circular origin. 
+</p>
+
+<p>
+  I want clusters that does not span across empty space and emphasises the proximity between data points themselves.
+  In this case, I have already hinted at a clustering algorithm that solves this problem, that being 
+  <em class="tooltip">HDBSCAN.<span class = "tooltiptext">Short for Hiearchical Density-Based Spatial Clustering of Applications with Noise</span></em>
+  It is admittedly more advanced than the K-means algorithm.
+  There is no longer a K to worry about. 
+  Instead, we are interested in density - that is the distance to a data point's nearest neighbours.
+  Imagine that each data point start off as their own cluster.
+  That is the densest possible cluster. 
+  Then we expand out from each data point and merge with other data points, thus gradually decreasing the density the further the distance is expanded.
+  This allows for tracking which data points merge into clusters together across the range of possible densities.
+  The merging of data points forms a hiearchical tree, going from the smallest and most dense to the biggest and least dense merged clusters. 
+  A threshold for <em class = "tooltip">the minimum viable cluster size is set
+    <span class = "tooltiptext">This minimum size is pre-selected, similar to K in K-means. Intrinsic metrics are likewise used to inform the optimal selection.</span></em>, 
+    which allows for pruning out clusters falling under this threshold.
+  With that set, clusters are considered stable by the variance of densities by which the clusters do not change. 
+  A cross-section of the total most stable clusters are then used for assignment.
+  This cross-section is not limited to any particular single level of density, however lower branches of the hiearchy are barred from selection if their "parent" branch is selected.  
+</p> 
+  
+<p>
+  It is possible for data points to not be part of a valid cluster as a product of the minimum cluster size. 
+  That is not a problem, but it is rather a feature. 
+  Such cases are considered noise - from a clustering standpoint. 
+  In this case, the instrinsic evaluation metric finds the optimal clustering with a minimum cluster size configured to be 40.
+  This results in the following clustering, where the approximate quarter of the total videos - considered to be noise by the HDBSCAN algorithm - are left out. 
+</p>
+</div>
+
+<center>
+  <img src="images/political_yt/UMAP_hdbscan_mcs 40_filtered for noise_Political Commentary.png" ; max-width="100%";class="center">
+</center>
+
 
 <div class="w3-content w3-padding-large w3-margin-top">
   <h2>Validation</h2>
