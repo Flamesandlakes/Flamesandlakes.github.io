@@ -7,23 +7,30 @@
 <link rel="stylesheet" href="custom_layout.css"> <!-- href="https://www.w3schools.com/w3css/4/w3.css"> -->
 
 <script>
-  function mean_over_time_removeOutliers(){
-    document.getElementById("PIC_mean_prod_over_time_wo_outliers")
-    .src="images/med_prices/mean_product_prices_individual_products_excl_outliers.png";
-    document.getElementById("outlierRemover")
-    .style.visibility="hidden";
-  } 
+  var looping_hdbscan = [
+    "images/political_yt/loop/UMAP_hdbscan_1.png",
+    "images/political_yt/loop/UMAP_hdbscan_2.png",
+    "images/political_yt/loop/UMAP_hdbscan_3.png",
+    "images/political_yt/loop/UMAP_hdbscan_4.png"
+  ];
+  var image_count = 0;
 
-  function means_by_atc_full(){
-    document.getElementById('PIC_prod_means_by_atc')
-    .src="images/med_prices/product_means_by_atc_wo_outliers_labadjusted_v3.png";
+  function rollover(image_id, milliseconds) {
+    var image = document.getElementById(image_id);
+    image.src = looping_hdbscan[image_count];
+    image_count++;
+    if (image_count >= looping_hdbscan.length) {
+      image_count = 0;
+    }
+    setTimeout(function() {
+      rollover(image_id, milliseconds);
+    }, milliseconds);
   }
-    
-  function means_by_atc_zoomed(){
-    document.getElementById('PIC_prod_means_by_atc')
-    .src="images/med_prices/product_means_by_atc_wo_outliers_labadjusted_v3_sub400.png";
-  }
-  </script> 
+
+  // Start the rollover function
+  rollover("hbscan_process", 4000);
+</script>
+
   
  <!-- 
   <style>
@@ -222,10 +229,6 @@
     </p>
       
     </p>
-    
-
-    <p> </p>
-    <p></p>
    
    <p>
     
@@ -514,7 +517,6 @@
     <div class="w3-content w3-padding-large w3-margin-top">
   <h2 id="topicalAnalysis">What topics do they cover?</h2>
 
-
 </div>
 -->
 
@@ -567,9 +569,6 @@ Note that there is a scrollbar for each of the timelines depicted below. To see 
     <img src="images/political_yt/sentiment over time_grouped by channel_by YWeek_2024W22_2025W08_fsize44 6.png" ;max-width="100%";class="center">
   </div>
 -->
-
-
-
 
 <div class="w3-content w3-padding-large w3-margin-top">
   <h2 id="dialogueUMAP">How similar are the videos to each other?</h2>
@@ -747,7 +746,7 @@ But it fails to capture neighbourhoods that do not conform to a circular origin.
 </div>
 
 <center>
-  <img src="images/political_yt/UMAP_hdbscan_mcs 40_filtered for noise_Political Commentary.png" ; max-width="100%";class="center">
+  <img id= "hdbscan_process" src="images/political_yt/UMAP_hdbscan_mcs 40_filtered for noise_Political Commentary.png" ; max-width="100%";class="center">
 </center>
 
 
