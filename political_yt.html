@@ -7,28 +7,47 @@
 <link rel="stylesheet" href="custom_layout.css"> <!-- href="https://www.w3schools.com/w3css/4/w3.css"> -->
 
 <script>
-  var looping_hdbscan = [
-    "images/political_yt/loop/UMAP_hdbscan_1.png",
-    "images/political_yt/loop/UMAP_hdbscan_2.png",
-    "images/political_yt/loop/UMAP_hdbscan_3.png",
-    "images/political_yt/loop/UMAP_hdbscan_4.png"
-  ];
-  var image_count = 0;
+  // Function to initialize the image cycler
+  function initializeImageCycler(elementId, images, initialDelay = 2000, cycleDelay = 2000, transitionDelay = 4000) {
+      let currentIndex = 0;
 
-  function rollover(image_id, milliseconds) {
-    var image = document.getElementById(image_id);
-    image.src = looping_hdbscan[image_count];
-    image_count++;
-    if (image_count >= looping_hdbscan.length) {
-      image_count = 0;
-    }
-    setTimeout(function() {
-      rollover(image_id, milliseconds);
-    }, milliseconds);
+      // Function to cycle through images
+      function cycleImage() {
+          currentIndex = (currentIndex + 1) % images.length;
+          if (currentIndex === 0 || currentIndex === images.length - 1) {
+              setTimeout(() => updateImage(currentIndex), transitionDelay);
+          } else {
+              updateImage(currentIndex);
+          }
+      }
+
+      // Function to update the image source
+      function updateImage(index) {
+          document.getElementById(elementId).src = images[index];
+          setTimeout(cycleImage, cycleDelay);
+      }
+
+      // Start the cycling process
+      setTimeout(cycleImage, initialDelay);
   }
 
-  // Start the rollover function
-  rollover("hbscan_process", 4000);
+  // Define the image set
+
+  const HDBSCANnoise_images = [
+      'images/political_yt/loop/UMAP_hdbscan_1v.png',
+      'images/political_yt/loop/UMAP_hdbscan_2v.png',
+  ];
+
+  const HDBSCANbounds_images = [
+      'images/political_yt/loop/UMAP_hdbscan_2v.png',
+      'images/political_yt/loop/UMAP_hdbscan_3v.png',
+      'images/political_yt/loop/UMAP_hdbscan_5v.png',
+      'images/political_yt/loop/UMAP_hdbscan_4v.png'
+  ];
+
+  // Initialize the image cycler with the desired parameters
+  initializeImageCycler('displayHDBSCANnoise', HDBSCANnoise_images, 1000, 1000, 2000) ;
+  initializeImageCycler('displayHDBSCANbounds', HDBSCANbounds_images);
 </script>
 
   
@@ -688,7 +707,7 @@ Even so, it is noteworthy how most of the clusters are relatively seperated on t
   <br> 
 </p>
 <p>
-  In this case, I arrive at a clustering with 5 centers. 
+  In this case, I arrive at a clustering with five centers. 
   That results in the following clustering.
 </p>
 
@@ -702,7 +721,7 @@ Even so, it is noteworthy how most of the clusters are relatively seperated on t
 <p>
 The colored diamond shapes indicate the position of their respective cluster center. 
 The diamonds themselves does not necessarily correspond to any actual data points. 
-But they do partition the space into 9 distinct regions. 
+But they do partition the space into five distinct regions. 
 Here lines are drawn according to which cluster center is closest. 
 As a sidenote, these boundary lines technically run to 
 <em class="tooltip">infinity.<span class = "tooltiptext">Of course, this have no practical implications for a UMAP projection.</span></em>
@@ -741,14 +760,49 @@ But it fails to capture neighbourhoods that do not conform to a circular origin.
   That is not a problem, but it is rather a feature. 
   Such cases are considered noise - from a clustering standpoint. 
   In this case, the instrinsic evaluation metric finds the optimal clustering with a minimum cluster size configured to be 40.
-  This results in the following clustering, where the approximate quarter of the total videos - considered to be noise by the HDBSCAN algorithm - are left out. 
+  This results in the following clustering, where the approximate quarter of the total videos 
+  - considered to be noise by the HDBSCAN algorithm - are left out. 
 </p>
 </div>
 
 <center>
-  <img id= "hdbscan_process" src="images/political_yt/UMAP_hdbscan_mcs 40_filtered for noise_Political Commentary.png" ; max-width="100%";class="center">
+  <div >
+    <img id="displayHDBSCANnoise" src="images/political_yt/loop/UMAP_hdbscan_1v.png"; max-width="100%";class="center">
+</div>
+
 </center>
 
+<div class="w3-content w3-padding-large w3-margin-top">
+<p>
+Data points classified as noise are not inherently invalid. 
+They are considered noise in the sense that do not form a sufficiently large cluster together with any other data points.
+When comparing the plots with and without noise, there are of course differences. 
+64.75% of the data are not classified as noise.  
+They form 31 unqiue clusters according to the HDBSCAN clustering algorithm. 
+This is substantially more granular than the five clusters produced by the Kmeans algorithm.
+</p>
+<p>
+  Now, since HDBSCAN does not involve centroids nor is it parametric, 
+  the cluster boundaries only play a part in visualisation, 
+  to aid in visually seperating clusters from each other since the color palette does not contain 31 easily distinguishable colors.
+  Even in cases, where two distinct but close clusters share the same color, spacing between them indicate their seperation.
+  That said, these boundaries are artifically constructed by approximation. 
+  So they can be fairly rough.
+  They rely on the spatial prediction of a supervised K-Nearest Neighbors model fed on the cluster labels. 
+  Further analysis will still rely on the original cluster labels and not these boundaries as the latter is solely meant for visualisation.
+</p>
+</div>
+
+<center>
+  <div >
+    <img id="displayHDBSCANbounds" src="images/political_yt/loop/UMAP_hdbscan_2v.png" ; max-width="100%";class="center">
+</div>
+</center>
+<div class="w3-content w3-padding-large w3-margin-top">
+<p>
+
+</p>
+</div>
 
 <div class="w3-content w3-padding-large w3-margin-top">
   <h2>Validation</h2>
