@@ -209,6 +209,15 @@
 <div class="w3-content w3-padding-large w3-margin-top">
 
   <!-- Title -->
+
+  <div class="w3-panel w3-pale-yellow w3-display-container w3-border">
+    <h4>Be aware!</h4>
+    <p>Later sections of this page contain flickering images. 
+    However, the flickering rate should not exceed 1 Hz.</p>
+    <span onclick="this.parentElement.style.display='none'"
+    class="w3-button w3-large w3-display-bottomright">&times;</span>
+  </div>
+
   <h1  id="data">Introduction</h1>
     
     <p>
@@ -789,6 +798,7 @@ This is substantially more granular than the five clusters produced by the Kmean
   That said, these boundaries are artifically constructed by approximation. 
   So they can be fairly rough.
   They rely on the spatial prediction of a supervised K-Nearest Neighbors model fed on the cluster labels. 
+  It is thus mostly based on the cluster label of the nearest points across space, which includes noise to provide the seperation.
   Further analysis will still rely on the original cluster labels and not these boundaries as the latter is solely meant for visualisation.
 </p>
 </div>
@@ -800,9 +810,30 @@ This is substantially more granular than the five clusters produced by the Kmean
 </center>
 <div class="w3-content w3-padding-large w3-margin-top">
 <p>
+<!-- NOTE: add labels to last two images in 2nd cycle-->
+Each cluster represents a group of similar content.
+Now the questions is: What characteristics distinguishes each cluster?
+In extension of the prior visual analysis, I remain interested in how the clusters are distributed by partisanship as well as time.
+In this regard, I will be moving away from the UMAP projection and instead rely on cluster labels. 
+To help with this transition, I will leave you with this plot, where the clusters are labelled accordingly through C1 to C31.
+This should provide a frame of reference. 
 
 </p>
 </div>
+
+<center>
+  <div >
+    <img src= "images/political_yt/UMAP_hdbscan_mcs 40_cmap Dark2_v2_w_labels_Political Commentary.png"; max-width="100%";class="center">
+    
+</div>
+</center>
+
+<div class="w3-content w3-padding-large w3-margin-top">
+  <p>
+
+  </p>
+</div>
+
 
 <div class="w3-content w3-padding-large w3-margin-top">
   <h2>Validation</h2>
