@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name = "color-scheme" content = "light dark">
+    <title>Decrypt Text</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        input, button {
+            width: 50%;
+            padding: 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+        #result {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            padding: 10px;
+            border: 1px solid #ddd;
+            min-height: 50px;
+            word-wrap: break-word; /* Internet Explorer 5.5+ */
+        }
+    </style>
+</head>
+<body>
+    <h1>Access the Vault</h1>
+    <p>Enter the passcode to decrypt the text:</p>
+    <!-- <p> NOTE TO SELF: <br> TRY MORE SPACING + <br>ADD SCROLLING TEXT + <br>BIGGER TEXT SIZE + <br>TRY WHITE ON BLACK + <br>BOUNDARY when display encrypt text</p>
+-->
+    <input type="password" id="passcode" placeholder="Passcode" autofocus />
+    <button id="decryptButton" onclick="decrypt()" disabled>Decrypt</button>
+    <h3></h3>
+    <div id="result" style="font-size: 20px;">Loading encrypted text...</div>
+    <div>To be fair, I do not expect you to know the passcode if you are not acquaintance of mine that have not been prompted by myself to look up this page.
+        <br>You are welcome to try and crack it, but be aware that any code passed will be used whether it is right or wrong. 
+        Being off by a single character will result in something completely unrecognisable to the actual content.
+    </div>
+
+    <script>
+        const encryptedData = {
+            "ciphertext": "IMzF8J0ofoalWgfVplUpbK8INgDPV3fixOSHaaQcUsLcXd5Xo5EIFqtClf5JukOpLWxX/3+fUFU42A6uxRtg3TTN2OWEC3Xf2Es6HuPo4EtrCq6+jlstuULI2uLU7mcuHN1tTJLAKDB/+1ULKuWx1ibSRJmWj8/jLIGltQhuTCUEOE0r7j+cD1EOY2YgExeK9LlZ0KSoqFtJ5LxO0HDYcNt3lD5Y41BGW3anavkxrTDEeyOA05EoeoIE+U84lL7DrfjcabyQ2VWWVBAOQLn963JxvAiNTprfgo6MAdPNOGx8m9wUUk4kXquMVM08FkEVVMa2kWmTBPVZgw+FzYiBNf1LiwtMpoHFHuW7tIOm7JMh8i03k8Id8wQbBsxOcwA4ghmESDxrSa0OZC9rjrJjgIjmWPe1Kzb2yQocbUtyq4Wks3TIy9MApEz1+qge8uvFIfrMYg3Pzr6cIsvkM1kTmuQrCmQRiOCPdIUCGbcv5U79yNoS69YJYhXXYEwl/nWcrhUsCCHr/SCr4xDR4ca2XSz9WwsdgaJElSaDQiYXMujciilCjN9jke+UTVbwc42vnarLsOM++TmxuyAPAx8Q4eMeGHi63rwiEZj73LPNiJqJHpAa9lYXSQn7Nc4IZWAnwR29/TwVOInzMA/ofZkzuYtSz1r7n/u/gLs8E6PEAOa+tjJ5TZXkogF9kckWHSH0PptwgnPLgPgV3liqw1xv7h7oKSyII3WQ7zdpEsT7tEhJqOWofIQf1MBsbv6RHQaz9T2V62MoI1c4IrUGjqgenT5VviHiRChKXSWlvbGPy/bL1scNwy67VQ4sdGXSRAuYYD4RDRJARnHyVB+5M+6d6JLRHr5RXrvqFOKX0wLMjXD46yJ/RjX5VD1P+OeoMbpXKKw5hHrRMGqR0QFzTYgWe0CzNRXbCMGahj27VbSHV8IqyD0SM7aGreNx8jX0lDDRMLchOSC2hWy+nzQj+ZUxKeEPQLNLv8TIcAHZUoqopazA0m4Yi1R+LI7W7ce8BW+II09iEsmLeAecBb7NY5qXXg==",
+            "description": "This is encrypted."
+            };
+        let encryptedText = encryptedData.ciphertext;
+        const resultDiv = document.getElementById('result');
+        const decryptButton = document.getElementById('decryptButton');
+        const passcodeInput = document.getElementById('passcode');
+        
+        resultDiv.textContent = encryptedText
+
+        // Enable the button since the data is already loaded
+        decryptButton.disabled = false;
+        passcodeInput.focus();
+
+        function decrypt() {
+            const passcode = passcodeInput.value;
+            if (!passcode) {
+                resultDiv.textContent = "Please enter a passcode.";
+                return;
+            }
+            if (!encryptedText) {
+                resultDiv.textContent = "Encrypted text not loaded yet.";
+                return;
+            }
+
+            try {
+                // Derive the key
+                const keyHash = CryptoJS.SHA256(passcode);
+                const aesKey = CryptoJS.enc.Hex.parse(keyHash.toString().substring(0, 64));
+                // Decode from base64
+                const ivPlusCiphertext = CryptoJS.enc.Base64.parse(encryptedText);
+                // Extract IV (first 16 bytes = 4 words)
+                const iv = CryptoJS.lib.WordArray.create(ivPlusCiphertext.words.slice(0, 4));
+                // Extract ciphertext (remaining bytes)
+                const ciphertext = CryptoJS.lib.WordArray.create(
+                    ivPlusCiphertext.words.slice(4),
+                    ivPlusCiphertext.sigBytes - 16
+                );
+                // Decrypt
+                const decrypted = CryptoJS.AES.decrypt(
+                    { ciphertext: ciphertext },
+                    aesKey,
+                    { iv: iv, padding: CryptoJS.pad.Pkcs7, mode: CryptoJS.mode.CBC }
+                );
+                // Update DOM
+                try {
+                    resultDiv.textContent = decrypted.toString(CryptoJS.enc.Utf8);
+                } catch (e) {
+                    //resultDiv.textContent = "Decryption failed: Output is not valid text (wrong passcode?).";
+                    resultDiv.textContent = decrypted.toString(CryptoJS.enc.Latin1)
+                }
+            } catch (e) {
+                resultDiv.textContent = `Decryption failed: ${e.message}`;
+            }
+        }
+    </script>
+</body>
+</html>
