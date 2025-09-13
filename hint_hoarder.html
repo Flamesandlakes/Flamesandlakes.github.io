@@ -108,16 +108,36 @@
         </span>
         &nbsp;
         <!--<input onclick="hideWord()" type = "image" src ="https://cdn.pixabay.com/photo/2015/12/22/04/00/eye-1103592_960_720.png" style = "width:50px;" /> -->
-        <button class="button" onclick="hideWord()" style= "background-color: #ce3333b9;">
-            <img src ="https://cdn.pixabay.com/photo/2015/12/22/04/00/eye-1103592_960_720.png" style = "width: min(140px, 65%);">
+        <button class="button" id = "hider" onclick="hideWord()" style= "background-color: #ce3333b9;">
+            <i>Skjul <!--<img src ="https://cdn.pixabay.com/photo/2015/12/22/04/00/eye-1103592_960_720.png" style = "width: min(140px, 65%);">-->
+            | Hide</i>
         </button>
         </div>
         </center>
         <br><br><br>
         <center>
         <div class = "flexdiv" id = "secondRow">
-            <button class = "button" id = "nextButton" onclick="nextWord()"><b>↻</b></button>
+            <button class = "button" id = "nextButton" onclick="nextWord()"><i>Shuffle</i></button> <!-- ↬ -->
+            <br>
+            <button class = "button" onclick = "showConfig">📑⚙️</button>
+        <br>
         </div>
+        <div class = "flexdiv" style = "opacity:1">
+       <div class = "menu" id = "setupMenu" style = "visibility: hidden; background-color: white; opacity: 1">
+        <input type="checkbox" id = "haveMemory">
+        <fieldset>
+            <legend>Select hint sets</legend>
+            <div>
+            <input type="checkbox" id = "selectBaseSet" >
+            </div>
+            <div>
+                <button type="submitSetup">Confirm | Bekræft</button>
+            </div>
+        </fieldset>
+
+       </div>
+       </div>
+
         </center>
         <script>
 
@@ -147,18 +167,39 @@
         function hideWord() {
             var x = document.getElementById("myWord");
             var a = document.getElementById("field");
+            var self = document.getElementById("hider");
 
             if (x.textContent != padWithSpace(" ")){ // Only apply if there is text
 
                 if (x.style.opacity == 1) {
                     x.style.opacity = 0;
                     a.style.backgroundColor = "black";
+                    self.textContent = "Show | Vis";
+                    self.style.fontStyle = "italic";
                 } else {
                     x.style.opacity = 1;
                     a.style.backgroundColor = "white";
+                    self.textContent = "Hide | Skjul"
+                    self.style.fontStyle = "italic";
                     }
                 }
             }
+
+        function showConfig() {
+            // unhide element 
+            // this element should contain various buttons, including:
+            //  - language options
+            //  - hint mode / or match mode
+            //  - expansion(s)
+            menu = document.getElementById("setupMenu");
+            if (menu.style.visibility == "hidden"){
+                menu.style.visibility = "visible"
+            } else {
+                menu.style.visibility = "hidden"
+            }
+
+
+        }
         // init setup
         document.getElementById("myWord").style.opacity = 1
         document.getElementById("myWord").textContent = "      ";
