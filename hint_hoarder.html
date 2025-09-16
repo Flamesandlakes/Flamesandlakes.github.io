@@ -58,7 +58,6 @@
         }
 
         #output {
-            
             font-size:118px; 
             padding-top: min(185px, 10%);
             
@@ -87,11 +86,13 @@
             font-size: 7rem;
         }
         .searching {
-            width:90%; 
-            padding:1rem
+            width:98%; 
+            padding:0.5rem
         }
         #searchWord {
             font-size: 3rem;
+            width: 50%;
+            text-align: center;
         }
         #searchButton {
             background-color: #5ddfdf;
@@ -117,6 +118,9 @@
             }
             #nextButton {
                 font-size: 5rem;
+            }
+            #searchWord, #searchButton{
+                width: 90%
             }
             
             
@@ -196,7 +200,7 @@
             <div class = "searching">
             <button class = "button" id="searchButton" onclick = "startSearch()" style = "color: aliceblue;">Check 🔎 Tjek</button>
             <form action = "" id = "searchForm" onsubmit="return false"> 
-                <input type="text" id="searchWord" name = "searchWord" >
+                <input type="text" id="searchWord" name = "searchWord">
                 <input type="submit" onsubmit="startSearch()" hidden> <!--  -->
             </form>
             </div>
