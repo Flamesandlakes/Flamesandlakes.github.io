@@ -40,6 +40,23 @@
         transform: translateY(4px);
         }
 
+        .smallButton {
+            font-size: 2.7rem;
+        }
+        .smallButton:active {
+        box-shadow: 0 5px #666;
+        transform: translateY(0.3rem);
+        }
+
+        .check {
+            width: 2.4rem;
+            height: 2.4rem;
+        }
+
+        .checkLabel {
+            font-size: 2.4rem;
+        }
+
         #output {
             
             font-size:118px; 
@@ -68,6 +85,16 @@
         }
         #nextButton {
             font-size: 7rem;
+        }
+        .searching {
+            width:90%; 
+            padding:1rem
+        }
+        #searchWord {
+            font-size: 3rem;
+        }
+        #searchButton {
+            background-color: #5ddfdf;
         }
 
         @media (max-width: 768px){
@@ -114,28 +141,71 @@
         </button>
         </div>
         </center>
-        <br><br><br>
+        <br>
         <center>
+            
         <div class = "flexdiv" id = "secondRow">
             <button class = "button" id = "nextButton" onclick="nextWord()"><i>Shuffle</i></button> <!-- ↬ -->
             <br>
-            <button class = "button" onclick = "showConfig">📑⚙️</button>
-        <br>
+             <div class = "menu" id = "setupMenu" style = "display: none; background-color: white; opacity: 1; width: 60%; padding: 1rem"> 
+                <legend style = "font-size:3rem">Settings</legend>
+                
+                <fieldset >
+                    <legend style="font-size:2rem;">Select hint sets</legend>
+                    <br>
+                    <div>
+                    <input type="checkbox" class = "check" name = "set" id = "selectStandardSet" value = "standard" checked>&nbsp;&nbsp;<label class = "checkLabel">Standard</label>        
+                    </div>
+                    <div>
+                    <input type="checkbox" class = "check" name = "set" id = "selectExpSet" value = "expanded" disabled>&nbsp;&nbsp;<label class = "checkLabel">Udvidet</label>   
+                    </div>
+                    <div>
+                    <input type="checkbox" class = "check" name = "set" id = "selectNatureSet" value = "nature">&nbsp;&nbsp;<label class = "checkLabel">Natur</label>        
+                    </div>
+                    <div>
+                    <input type="checkbox" class = "check" name = "set" id = "selectFictionSet" value = "fiction">&nbsp;&nbsp;<label class = "checkLabel">Fortællinger & Fiktion</label>        
+                    </div>
+                    <div>
+                    <input type="checkbox" class = "check" name = "set" id = "selectPeopleSet" value = "names" >&nbsp;&nbsp;<label class = "checkLabel">Navne</label>        
+                    </div>
+                    <div>
+                    <input type="checkbox" class = "check" name = "set" id = "selectOrgSet" value = "orgs">&nbsp;&nbsp;<label class = "checkLabel">Brands & Orgs</label>        
+                    </div>
+    
+                    <div>
+                    <input type="checkbox" class = "check" name = "set" id = "selectConceptsSet" value = "concepts">&nbsp;&nbsp;<label class = "checkLabel">Midler & Koncepter</label>        
+                    </div>
+                    
+                    
+                </fieldset>
+                <br>
+                <div>
+                    <input type="checkbox" class = "check" id = "haveMemory">&nbsp;&nbsp;<label class = "checkLabel">No direct repeats</label>
+                </div>
+                <br>
+                    <div>
+                        <button class="smallButton" type="submit" onclick="submitSettings()" style="color:white; font-style:bold">Confirm | Bekræft</button>
+                    </div>
+                
+                <br>
+                
+            </div>
+            <br>
+            <button class = "button" onclick = "showConfig()">📑⚙️</button>
+            <br>
+            <div class = "searching">
+            <button class = "button" id="searchButton" onclick = "startSearch()" style = "color: aliceblue;">Check 🔎 Tjek</button>
+            <form action = "" id = "searchForm" onsubmit="return false"> 
+                <input type="text" id="searchWord" name = "searchWord" >
+                <input type="submit" onsubmit="startSearch()" hidden> <!--  -->
+            </form>
+            </div>
+
+           
         </div>
         <div class = "flexdiv" style = "opacity:1">
-       <div class = "menu" id = "setupMenu" style = "visibility: hidden; background-color: white; opacity: 1">
-        <input type="checkbox" id = "haveMemory">
-        <fieldset>
-            <legend>Select hint sets</legend>
-            <div>
-            <input type="checkbox" id = "selectBaseSet" >
-            </div>
-            <div>
-                <button type="submitSetup">Confirm | Bekræft</button>
-            </div>
-        </fieldset>
-
-       </div>
+            <!-- <div class = "menu" id = "setupMenu" style = "visibility: hidden; background-color: white; opacity: 1"> -->
+       
        </div>
 
         </center>
@@ -143,12 +213,27 @@
 
         var ordbank = {
             "dansk":
-            {"basis": ["Spil", "Vegas", "Pengeskab", "Seng", "Fejl", "Historie", "Øl", "Disko", "Præsident", "Dværg", "Cirkus", "Elvis", "Græsslåmaskine", "Sten", "Grill", "Panda", "Drøm", "Ægteskab", "Navle", "Ridder", "Fred", "Blomst", "Schweiz", "Kalender", "Dinosaur", "Gul", "Svamp", "Due", "Pikachu", "Darwin", "Tomat", "Faldskærm", "Kanon", "Kikkert", "Frankrig", "Måne", "Café", "Håndtag", "Værktøj", "Halloween", "Loppe", "Baby", "Kantine", "Par", "Gren", "Askepot", "Pandekage", "Ø", "Taxa", "Spartacus", "Pels", "Tornado", "Pyramide", "Alliance", "Hvede", "Cæsar", "Nudel", "Hat", "Tandlæge", "Sommerfugl", "Pulver", "Porcelæn", "Marked", "Puppe", "Bord", "Brandmand", "Glas", "Couscous", "Grækenland", "Google", "Bue", "Mars", "Golf", "Billet", "Fatamorgana", "Ramses", "Ild", "Vejkryds", "Prinsesse", "Bager", "Parfume", "Flamme", "Zombie", "Joker", "Nummer", "Fakta", "Rom", "Metal", "Tun", "Buffy", "Vulkan", "Passion", "Hane", "Elektricitet", "Bøde", "Pingvin", "Celle", "Gandhi", "Oase", "Stige", "Engel", "Sur", "Hår", "Matrix", "Cocktail", "Mario", "Prop", "Violin", "Fersken", "Skib", "Bowling", "Churchill", "Vædder", "Spion", "Musik", "Hals", "Amerika", "Kaffe", "Feber", "Hjerne", "Maske", "Koncert", "Grønland", "Haj", "Musling", "Shakespeare", "Kæmpe", "Skum", "Hule", "Krokodille", "Smykke", "S-Tog", "Briller", "Larsen", "Geni", "Dracula", 
-            "Løve", "Sokker", "Fredag", "Ræv", "Politi", "Simpson", "Lyn", "Avis", "Olympiade", "Skøjte", "Advokat", "Tolkien", "Flod", "Tanke", "Frankenstein", "Hylde", "Accent", "Brusebad", "Sutsko", "Blad", "Puma", "Revolution", "Sahara", "Stok", "Musketer", "Tråd", "Tulipan", "Ikea", "Hollywood", "Myg", "Spyd", "Pung", "Slutning", "Plakat", "Ærme", "Gremlins", "Poker", "Tærte", "Gift", "Stjerne", "Ulv", "Jones", "Fødselsdag", "Melon", "Anker", "Israel", "Kaktus", "Tennis", "Bjørn", "Mus", "Halskæde", "Gård", "Belgien", "Kage", "Hingst", "Mexico", "Hvid", "Skaldet", "Tog", "Sardin", "Rum", "Kleopatra", "Vindue", "Barbie", "Chokolade", "Sne", "Slips", "Vind", "Hus", "Bamse", "Krig", "Reb", "Vin", "Sombrero", "Kløver", "Knap", "Ost", "Chewbacca", "Jern", "Batman", "Sang", "Nilen", "Biograf", "Godzilla", "Uniform", "Regn", "Brand", "Hjelm", "Is", "Fløjte", "Champagne", "Safari", "Alien", "Larve", "Humor", "Hjørne", "Antarktis", "Pølse", "Pirat", "Ferie", "Alf", "Magnet", "Gaffel", "Granat", "Fyld", "Børste", "Gris", "Margrethe", "Sejl", "Camembert", "Shrek", "Stang", "Western", "Myte", "Facebook", "Agern", "Ben", "Bro", "Mariehøne", "Sennep", "Sherlock", "Flaske", "Virus", "Trane", "Operation", "Rap", "Muse", "Forsvar", "Sushi", "Sverige", "Zoologisk have", "Pibe", "Bog", "Overskæg", "Boble", "Kæde", "Stark", "Småkage", "Alcatraz", "Røg", "Hasselnød", "Diamant", "Rose", "Viking", "Alarm", "Dans", "Hulk", "Ørken", "Radio", "Pære", "Gladiator", "Sol", "Grød", "Snor", "Australien", "Slot", "Vagt", "Får", "Tango", "Moden", "Tempel", "Sand", "Chips", "Nintendo", "Vædde", "Salt", "Manual", "Frost", "Håndklæde", "Venus", "Blæksprutte", "Cykel", "Opera", "Kasse", "PlayStation", "Blond", "Iris", "Hund", "Bjerg", "Peanut", "Elpære", "Jedi", "Peberfrugt", "Lys", "Sofa", "Mozart", "Ring", "Pizza", "Klub", "Jul", "Mode", "Station", "Lampe", "Astérix", "Robot", "Komedie", "Sprog", "Frisør", "Konge", "Ballet", "Band", "Alkohol", "Lava", "Hævn", "Chef", "Ulykke", "Kors", "Vals", "Mumie", "Batteri", "Retfærdighed", "Karate", "Papegøje", "Rotte", "Tang", "Amazon", "Tobak", "Lineal", "Kniv", "Pude", "Armstrong", "Sværd", "Fly", "Terminator", "Brev", "Støvle", "Paradis", "Æg", "Pumpe", "Aladdin", "Rør", "Bælte", "Bar", "Tatovering", "Spielberg", "Æble", "Sirene", "Boksning", "Hammer", "Chile", "Gryderet", "Kejser", "Pave", "Fængsel", "Hul", "Punk", "Aften", "Kort", "Mund", "Karrusel", "Psykopat", "Græs", "Fald", "Johnny", "Ninja", "Dyne", "Jæger", "Grøntsag", "Kirkegård", "Amor", "Paraply", "Spring", "Rod", "Tæppe", "Pony", "Krone", "Ny", "Tarantino", "Grotte", "Ford", "Kasino", "Slik", "Springvand", "Frodo", "Læge", "Jordbær", "Atom", "Lotteri", "Skat", "Pilot", "Mickey", "Kloak", "Galakse", "Fastelavn", "Elastik", "Gryde", "Vingummi", "Tunnel", "Alene", "Kartoffel", "Bølge", "Skole", "Lego", "Croissant", "Spøgelse", "Sugerør", "Søm", "Potter", "Torden", "Have", "Maleri", "Skur", "Våbenhvile", "Sirup", "Skov", "Balance", "Zeus", "Kakerlak", "Guillotine", "Tryllekunster", "Hockey", "Banan", "Søs", "Tradition", "Slange", "Kop", "Picasso", "Ur", "Ged", "Brød", "Djævel", "Første", "Tarzan", "Peber", "Trekant", "Dukke", "Italien", "Scene", "Plastik", "Stråle", "Karton", "Kanin", "Everest", "Skrue", "Rive", "Computer", "Starbucks", "Bold", "Ovn", "Stik", "Påske", "Spand", "Spor", "Reggae", "Møg", "Sø", "Abe", "Fyrtårn", "Bær", "Studie", "Gotisk", "Titanic", "Maskine", "Mafia", "Stor", "Missil", "Microsoft", "Ski", "Nabolag", "Rock", "Tiger", "Nål", "Sæbe", "Kat", "Palads", "Valg", "Honning", "Rambo", "Lærred", "Vampyr", "Matador", "Manga", "Hotel", "Doping", "Hvidløg", "Terning", "Rocky", "Mælk", "Jackson", "Cigaret", "Armbånd", "Vejr", "Tårn", "Tokyo", "Hæl", "Kylling", "Helikopter", "Oberst", "Sukker", "Teater", "Skovl", "Guitar", "Gravid", "Spejl", "Fest", "Bad", "Kerne", "Fe", "Hjerte", "Moskva", "Billard", "Enhjørning", "Orange", "Serie", "Rede", "Krydderi", "Elefant", "Karneval", "Avatar", "Mølle", "Jungle", "Nonne", "Fuser"]}
+            {"standard": ["Spil", "Vegas", "Pengeskab", "Seng", "Fejl", "Historie", "Øl", "Disko", "Præsident", "Dværg", "Cirkus", "Elvis", "Græsslåmaskine", "Sten", "Grill", "Panda", "Drøm", "Ægteskab", "Navle", "Ridder", "Fred", "Blomst", "Schweiz", "Kalender", "Dinosaur", "Gul", "Svamp", "Due", "Pikachu", "Darwin", "Tomat", "Faldskærm", "Kanon", "Kikkert", "Frankrig", "Måne", "Café", "Håndtag", "Værktøj", "Halloween", "Loppe", "Baby", "Kantine", "Par", "Gren", "Askepot", "Pandekage", "Ø", "Taxa", "Spartacus", "Pels", "Tornado", "Pyramide", "Alliance", "Hvede", "Cæsar", "Nudel", "Hat", "Tandlæge", "Sommerfugl", "Pulver", "Porcelæn", "Marked", "Puppe", "Bord", "Brandmand", "Glas", "Couscous", "Grækenland", "Google", "Bue", "Mars", "Golf", "Billet", "Fatamorgana", "Ramses", "Ild", "Vejkryds", "Prinsesse", "Bager", "Parfume", "Flamme", "Zombie", "Joker", "Nummer", "Fakta", "Rom", "Metal", "Tun", "Buffy", "Vulkan", "Passion", "Hane", "Elektricitet", "Bøde", "Pingvin", "Celle", "Gandhi", "Oase", "Stige", "Engel", "Sur", "Hår", "Matrix", "Cocktail", "Mario", "Prop", "Violin", "Fersken", "Skib", "Bowling", "Churchill", "Vædder", "Spion", "Musik", "Hals", "Amerika", "Kaffe", "Feber", "Hjerne", "Maske", "Koncert", "Grønland", "Haj", "Musling", "Shakespeare", "Kæmpe", "Skum", "Hule", "Krokodille", "Smykke", "S-Tog", "Briller", "Larsen", "Geni", "Dracula", 
+                    "Løve", "Sokker", "Fredag", "Ræv", "Politi", "Simpson", "Lyn", "Avis", "Olympiade", "Skøjte", "Advokat", "Tolkien", "Flod", "Tanke", "Frankenstein", "Hylde", "Accent", "Brusebad", "Sutsko", "Blad", "Puma", "Revolution", "Sahara", "Stok", "Musketer", "Tråd", "Tulipan", "Ikea", "Hollywood", "Myg", "Spyd", "Pung", "Slutning", "Plakat", "Ærme", "Gremlins", "Poker", "Tærte", "Gift", "Stjerne", "Ulv", "Jones", "Fødselsdag", "Melon", "Anker", "Israel", "Kaktus", "Tennis", "Bjørn", "Mus", "Halskæde", "Gård", "Belgien", "Kage", "Hingst", "Mexico", "Hvid", "Skaldet", "Tog", "Sardin", "Rum", "Kleopatra", "Vindue", "Barbie", "Chokolade", "Sne", "Slips", "Vind", "Hus", "Bamse", "Krig", "Reb", "Vin", "Sombrero", "Kløver", "Knap", "Ost", "Chewbacca", "Jern", "Batman", "Sang", "Nilen", "Biograf", "Godzilla", "Uniform", "Regn", "Brand", "Hjelm", "Is", "Fløjte", "Champagne", "Safari", "Alien", "Larve", "Humor", "Hjørne", "Antarktis", "Pølse", "Pirat", "Ferie", "Alf", "Magnet", "Gaffel", "Granat", "Fyld", "Børste", "Gris", "Margrethe", "Sejl", "Camembert", "Shrek", "Stang", "Western", "Myte", "Facebook", "Agern", "Ben", "Bro", "Mariehøne", "Sennep", "Sherlock", "Flaske", "Virus", "Trane", "Operation", "Rap", "Muse", "Forsvar", "Sushi", "Sverige", "Zoologisk have", "Pibe", "Bog", "Overskæg", "Boble", "Kæde", "Stark", "Småkage", "Alcatraz", "Røg", "Hasselnød", "Diamant", "Rose", "Viking", "Alarm", "Dans", "Hulk", "Ørken", "Radio", "Pære", "Gladiator", "Sol", "Grød", "Snor", "Australien", "Slot", "Vagt", "Får", "Tango", "Moden", "Tempel", "Sand", "Chips", "Nintendo", "Vædde", "Salt", "Manual", "Frost", "Håndklæde", "Venus", "Blæksprutte", "Cykel", "Opera", "Kasse", "PlayStation", "Blond", "Iris", "Hund", "Bjerg", "Peanut", "Elpære", "Jedi", "Peberfrugt", "Lys", "Sofa", "Mozart", "Ring", "Pizza", "Klub", "Jul", "Mode", "Station", "Lampe", "Astérix", "Robot", "Komedie", "Sprog", "Frisør", "Konge", "Ballet", "Band", "Alkohol", "Lava", "Hævn", "Chef", "Ulykke", "Kors", "Vals", "Mumie", "Batteri", "Retfærdighed", "Karate", "Papegøje", "Rotte", "Tang", "Amazon", "Tobak", "Lineal", "Kniv", "Pude", "Armstrong", "Sværd", "Fly", "Terminator", "Brev", "Støvle", "Paradis", "Æg", "Pumpe", "Aladdin", "Rør", "Bælte", "Bar", "Tatovering", "Spielberg", "Æble", "Sirene", "Boksning", "Hammer", "Chile", "Gryderet", "Kejser", "Pave", "Fængsel", "Hul", "Punk", "Aften", "Kort", "Mund", "Karrusel", "Psykopat", "Græs", "Fald", "Johnny", "Ninja", "Dyne", "Jæger", "Grøntsag", "Kirkegård", "Amor", "Paraply", "Spring", "Rod", "Tæppe", "Pony", "Krone", "Ny", "Tarantino", "Grotte", "Ford", "Kasino", "Slik", "Springvand", "Frodo", "Læge", "Jordbær", "Atom", "Lotteri", "Skat", "Pilot", "Mickey", "Kloak", "Galakse", "Fastelavn", "Elastik", "Gryde", "Vingummi", "Tunnel", "Alene", "Kartoffel", "Bølge", "Skole", "Lego", "Croissant", "Spøgelse", "Sugerør", "Søm", "Potter", "Torden", "Have", "Maleri", "Skur", "Våbenhvile", "Sirup", "Skov", "Balance", "Zeus", "Kakerlak", "Guillotine", "Tryllekunster", "Hockey", "Banan", "Søs", "Tradition", "Slange", "Kop", "Picasso", "Ur", "Ged", "Brød", "Djævel", "Første", "Tarzan", "Peber", "Trekant", "Dukke", "Italien", "Scene", "Plastik", "Stråle", "Karton", "Kanin", "Everest", "Skrue", "Rive", "Computer", "Starbucks", "Bold", "Ovn", "Stik", "Påske", "Spand", "Spor", "Reggae", "Møg", "Sø", "Abe", "Fyrtårn", "Bær", "Studie", "Gotisk", "Titanic", "Maskine", "Mafia", "Stor", "Missil", "Microsoft", "Ski", "Nabolag", "Rock", "Tiger", "Nål", "Sæbe", "Kat", "Palads", "Valg", "Honning", "Rambo", "Lærred", "Vampyr", "Matador", "Manga", "Hotel", "Doping", "Hvidløg", "Terning", "Rocky", "Mælk", "Jackson", "Cigaret", "Armbånd", "Vejr", "Tårn", "Tokyo", "Hæl", "Kylling", "Helikopter", "Oberst", "Sukker", "Teater", "Skovl", "Guitar", "Gravid", "Spejl", "Fest", "Bad", "Kerne", "Fe", "Hjerte", "Moskva", "Billard", "Enhjørning", "Orange", "Serie", "Rede", "Krydderi", "Elefant", "Karneval", "Avatar", "Mølle", "Jungle", "Nonne", "Fuser"],
+            "expanded":  [], /*["Benzintank", "Gave", "Myte", "Lotto", "Brætspil", "Dæmon", "Tyr", "Møn"],*/
+            "nature": ["Abe","And", "Bi", "Dådyr", "Edderkop", "Elefant", "Elg", "Chimpanse", "Flagermus", "Flodhest", "Får", "Ged", "Giraf", "Gorilla", "Gris", "Haj", "Hest", "Hund", "Hval", "Kanin", "Kat", "Ko", "Krokodille", "Kylling", "Lemur", "Leopard", "Mulvarp", "Mus", "Næbdyr", "Næsehorn", "Ræv", "Sæl", "Tiger", "Ugle", "Ulv", "Svin", "Zebra", "Panda", "Bjørn", "Koala", "Slange", "Løve", "Kamæleon", "Orm", "Myre", "Skildpadde", "Frø", "Papegøje","Snegl","Flamingo", "Ørn", "Krage", "Kiwi", "Hvesp", "Vandmand", "Ål", "Søhest", "Delfin", "Skorpion", "Krabbe", "Blæksprutte",
+                    "Blomst", "Blad", "Svampe", "Træ", "Græs", "Bambus", "Pollen",
+                    "Klippe", "Flod", "Bjerg", "Dal", "Sø", "Bugt", "Ø", "Vandfald", "Hav",
+                    "Sten", "Sand", "Flint", "Kalk", "Ler", "Jord", "Rav"],
+            "fiction": ["Andersen", "Tolkien", "Blixen", "Sherlock", "Tarzan", "Superman", "Batman", "Shrek", "Chewbacca", "Spielberg", "NCIS", "Mentalist", "Krimi", "Skurk", "Helt", "Myte", "Atlantis", "Shakespeare", "Bones", "Barbie", "Homer", "Fabel", "Jæger", "Konge", "Mysterie", "Mentor",
+                        "Loke", "Thor", "Odin", "Zeus", "Herkules", "Poseidon", "Hades", "Balder", "Saga", "Fenris", "Hel", "Apollo", "Minotauros", "Cassandra", "Pandora", "Yggdrasil", "Ragnarok", "Athene", "Midgård", "Valhalla", "Olympen", "Titan", "Muse", 
+                        "Vampyr", "Varulv", "Spøgelse", "Zombie", "Heks", "Dracula", "Trold", "Nisse", "Drage", "Føniks"  ],
+            "names": ["Benjamin", "Roosevelt", "Kennedy", "Bruce", "Donald", "Ben", "Abraham", "David", "Margrethe", "Frederik", "Mary", "Charles", "Churchill", "Jesus", "Freja", "Olivia", "Michelle", "John", "Jane", "Patrick", "Kleopatra", "Emma", "Kim", "Andersen", "Per", "Peter", "Louise", "Alex", "Mads", "Kalypso", "Holger", "James", "Julie", "Martin", "George", "Sofie", "Erik"],
+            /*"steder": ["Roskilde", "Paris", "Rom", "London", "Møn", "Sjælland", "Bornholm", "Berlin", "Aalborg", "Fyn", "Amager", "Skotland"],*/
+            "orgs": ["Gucci", "Nike", "Pepsi", "Arla", "Toms", "Nintendo", "Netto", "Aldi", "Bilka", "Volvo", "McDonalds", "Shell", "Ikea", "Synoptik", "Rolex", "Disney", "Lego", "Microsoft", "Apple", "Samsung", "Saxo", "Bones", "Spotify", "Google", 
+                    "UNESCO", "WHO", "FBI", "NASA", "Kystvagt", "FN", "Forening", "Ministerie", "Klub", "Monopol", "Band", "Pagt", "Alliance", "DSB", "Skole", "Firma"],
+            "concepts": ["Plus", "Minus", "Frihed", "Tid", "Tradition", "Filosofi", "Ydmyghed", "Velgørenhed", "Håb", "Undervisning", "Bevidsthed", "Intelligens", "Kreativitet", "Mester", "Skæbne", "Religion", "Bevisbyrde", "Regel", "Demokrati", "Diktatur", "Kriminalitet", "Fremtid", "Sejr", "Herredømme", "Velfærd", "Anarki", "Teori", "Bæredygtighed", "Investering", "Talent", "Forræder", "Natur", "Industri", "Videnskab", "Samfund", "Etik", "Ideologi", "Meter", "Kontrakt", "Kærlighed", "Kredsløb", "Årsag", "Kilde", "Fællesskab", "Fiktion", "Problem", "Uafhængighed", "Skønhed", "Æra", "Sprog", "Oplysning", "Fysik", "Matematik", "Rum", "Sandhed", "Frygt", "Fremmed", "Signal", "Rod", "System", "Alder", "Krig", "Kontakt", "Hukommelse", "Øvelse", "Stemme", "Medicin", "Penge", "Økonomi", "Fordom", "Vanvid", "Patriarki", "Motor", "Vej", "Nummer", "Radio", "Ekko", "Lyd", "Nation", "Våben", "Brev", "Kald", "Stil", "Sundhed", "Behov", "Øje", "Gift", "Velkomst", "Årstid"]
+            }
 
             };
 
         let lang = "dansk"
+        let aktivePakker = ["standard"]
 
         //funcs
         function padWithSpace(text){
@@ -157,7 +242,8 @@
         }
 
         function nextWord() {
-            let wordOptions = ordbank[lang]["basis"];
+            var valgtPakke = aktivePakker[Math.floor(Math.random() * aktivePakker.length)];
+            let wordOptions = ordbank[lang][valgtPakke];
             var wordOutput = wordOptions[Math.floor(Math.random() * wordOptions.length)];
             wordOutput = padWithSpace(wordOutput);
 
@@ -192,17 +278,88 @@
             //  - hint mode / or match mode
             //  - expansion(s)
             menu = document.getElementById("setupMenu");
-            if (menu.style.visibility == "hidden"){
-                menu.style.visibility = "visible"
+            if (menu.style.display == "none"){
+                /*menu.style.visibility = "visible" */
+                menu.style.display = "inline-block"
+                menu.focus()
             } else {
-                menu.style.visibility = "hidden"
+                /* menu.style.visibility = "hidden" */
+                menu.style.display = "none"
             }
-
+        }
+        function submitSettings() {
+            let checkboxes = document.querySelectorAll('input[name="set"]:checked');
+            selectedSets  = [];
+            checkboxes.forEach((checkbox) => {
+                selectedSets.push(checkbox.value)
+            });
+            aktivePakker = selectedSets;
+            document.getElementById("searchButton").textContent = '🔎';
+            showConfig();
+            
+        }
+        function searchBank(word) { 
+            let query = String(word).charAt(0).toUpperCase() + String(word).slice(1);
+            let whereFound = [];
+            
+            for (const [key, values] of Object.entries(ordbank[lang])){
+                if (values.includes(query)){
+                    whereFound.push(key.toUpperCase())
+                }
+            }
+            return [(whereFound.length > 0), whereFound]
 
         }
+        function answerQuery(word) {
+
+            const results = searchBank(word); /* returns [bool, Array] */ 
+            if (results[0]) {
+                return "'"+word + "' found in [" + String(results[1])+"]."
+            } else {
+                return "'"+word + "' not found anywhere."
+            }
+        }
+
+        function startSearch() {
+            let btn = document.getElementById("searchButton");
+            let wordField = document.getElementById("searchWord");
+
+            if (wordField.value == ""){
+                btn.textContent = "Check 🔎 Tjek"
+                btn.style.fontSize = String(80/btn.textContent)+"rem"
+                return
+            }
+            
+            answer = answerQuery(wordField.value);
+            deliverSearchResult(btn, answer, 0);
+            /*btn.textContent = "🔎 "+answer+" 🔎"*/
+            btn.style.fontSize = String(80/answer.length)+"rem"
+            btn.style.fontStyle = "bold";
+            btn.focus();
+            
+        }
+        function deliverSearchResult(element, answer, index = 0) {
+            let txt = "🔎 "+answer.slice(0, index)+ " 🔎"
+            element.textContent = txt
+            if (index === answer.length){
+                return
+                }
+            setTimeout(() => deliverSearchResult(element, answer, index +1), 120-(index**3)/index**1 );
+                
+        }
+        
         // init setup
-        document.getElementById("myWord").style.opacity = 1
+        document.getElementById("myWord").style.opacity = 1;
         document.getElementById("myWord").textContent = "      ";
+        document.getElementById("selectBaseSet").prop('checked', true);
+
+        // listening
+        let searchForm = document.getElementById("searchForm");
+        searchForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            startSearch()
+        })
+        
         </script>
         
     </body>
