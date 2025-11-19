@@ -6,6 +6,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+<script src="ImageCycling.js"></script>
+<script>
+  
+  // source: https://bost.ocks.org/mike/shuffle/
+  function shuffle(array) {
+    let currentIndex = array.length;
+
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+
+      // Pick a remaining element...
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  }
+  
+  // Define the image set
+
+  const MatchKats_images = [
+      "images/cats/cute-kitten1_red.png",
+      "images/cats/cute-kitten2_gold.png",
+      //"images/cats/cute-kitten3_purple.png",
+      "images/cats/cute-kitten4_lightblue.png",
+      //"images/cats/cute-kitten5_lime.png",
+      //"images/cats/cute-kitten6_turquoise.png",
+      "images/cats/cute-kitten7_pink.png",
+      "images/cats/cute-kitten8_white.png",
+  ];
+
+  shuffle(MatchKats_images) // shuffle such that reloading the page doesnt always start with the same cat, and such that the order varies.
+
+  // Initialize the image cycler with the desired parameters
+  initializeImageCycler('catPicture', MatchKats_images, 0, 3500, 3000) ;
+  //initializeImageCycler('catPicture', shuffle(MatchKats_images), 150, 3500, 3000) ;
+  
+  
+</script>
+
 <style>
 body,h1,h2,h3,h4,h5, h6, h7 {font-family: "Helvetica", sans-serif}
 
@@ -13,6 +56,20 @@ body,h1,h2,h3,h4,h5, h6, h7 {font-family: "Helvetica", sans-serif}
   font-size: 1.2rem;
   color: gray;
 }
+
+.customContainer{
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  
+}
+
+#catPicture{
+  height: 15rem;
+  width: auto;
+  max-width: 15rem;
+}
+
 </style>
 </head>
 <body class="w3-light-grey">
@@ -26,14 +83,46 @@ and is wrapped around the whole page content, except for the footer in this exam
   <h1><b>My Personal Projects</b></h1>
   <p>Welcome to an overview of various hobby projects by <span class="w3-tag">Daniel Ilsø</span></p>
 </header>
+<div class="customContainer">
+<!-- Grid 
+ -->
 
-<!-- Grid -->
-<div class="w3-row">
 <!-- Blog entries ->
 <div class="w3-col l8 s12"> -->
 
 <!-- Blog entry --> 
- <div class = "w3-row-padding"></div>
+
+
+
+
+<div class="w3-third w3-container w3-margin-bottom"> <!-- "w3-card-4 w3-margin w3-white"> -->
+  <center>    
+  <a href="/match_kats">
+        <img  id="catPicture" alt="Similar Kittens" style="width:100%">
+      </a>
+    </center>
+    <div class="w3-container">
+      <h3><b>Matching Kats: </b></h3>
+      <h4> <b>Be ready to match cards and their corresponding categories by these cute pictures. </b>
+        <br>Designed to be played on a big and/or shared screen between multiple players.
+        <br>Available in Danish and English. </h4>
+      <h5>Keywords: <span class="w3-opacity">Web development, JavaScript, play, picture matching, categories, cats, Danish and English, no tutorial</span></h5>
+    </div>
+
+    <div class="w3-container">
+      <p></p>
+      <div class="w3-row">
+        <div class="w3-col m8 s12">
+          <!--<p><button class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p> -->
+          <p><a href="/match_kats" class="w3-button w3-padding-large w3-white w3-border">TRY IT</a></p>
+        </div>
+        <div class="w3-col m4 w3-hide-small">
+          <p><span class="w3-padding-large w3-left updateTag"><b></b>November 2025</span></p> <!-- 08.04.24-->
+        </div>
+      </div>
+    </div>
+    </div>
+
 
 <div class="w3-third w3-container w3-margin-bottom">
   <a href="/hint_hoarder">
@@ -43,7 +132,7 @@ and is wrapped around the whole page content, except for the footer in this exam
 <div class="w3-container" >
   <h3><b>Flash Words:</b></h3>
   <h4> A simple tool to assist in your hint-based games, by giving words to be provided hints for by would-be teammates. A shared screen is recommended for bigger teams. Note: Most word sets are currently only in Danish.</h4>
-  <h5>Keywords: <span class="w3-opacity">Web development, JavaScript, play, guessing game, Danish</span></h5>
+  <h5>Keywords: <span class="w3-opacity">Web development, JavaScript, play, guessing game, Danish, no tutorial</span></h5>
 </div>
 
 <div class="w3-container">
@@ -117,7 +206,7 @@ and is wrapped around the whole page content, except for the footer in this exam
     </div>
     </div>
 
-   <div class = "w3-row-padding">
+   
 
 
   <div class="w3-third w3-container w3-margin-bottom">
@@ -180,9 +269,8 @@ and is wrapped around the whole page content, except for the footer in this exam
       </div>
     </div>
   </div>
-  <hr>
-</div>
-<hr>
+ 
+
 
   <!-- Blog entry 
   <div class="w3-card-4 w3-margin w3-white">
@@ -208,10 +296,11 @@ and is wrapped around the whole page content, except for the footer in this exam
   -->
 <!-- END BLOG ENTRIES -->
 </div>
+</div>
 
 <!-- Introduction menu -->
-<!-- <div class="w3-col l4">
-<!-- Posts ->
+<!-- <div class="w3-col l4" -->
+<!-- Posts 
   -->
 
      <div class = "w3-container w3-padding-large">
