@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/tabletop_recommender_layout.css">
+        <title>Tabletop Treasure Trove Teller</title>
+       
+    </head>
+    <body style="justify-content: center;">
+        <center>
+            <div>
+                <h2>Tabletop Treasure Trove Teller:</h2>
+                <h4>A Selective Board Game Recommender System</h4>
+                
+            </div>
+        </center>
+        <h3>Select the kinds of game(s) you enjoy or are looking for something similar to.</h3>
+        
+       
+        <form class="container" action="" method="get">
+            <div id="select-anchor"></div>
+        </form>
+        <div class="minorHeader", style="padding: 0.2rem;">
+        <span> 
+            <br>You may select up to 20 games, though a selection of any smaller size works as well.
+            <br>Note: Current available assortment of games may be biased and/or limited. 
+            Selecting nothing will give you the first game according to alphabetic order by default.
+            <br><br>
+        </span>
+        </div>
+        
+        <center>
+        <div class="container"> 
+            <br>
+        <div>
+            <p>
+            <!-- <button id="userRequestBtn" onclick="showRecommendation()">Get me something similar!</button> -->
+            <button id="userRequestBtn">Suggest something I might like, based on my selection!</button>
+            <br><br>
+            </p>
+        </div>
+        <div id="overallRecommendationDiv" style="display: none;"> 
+            <p>
+            <h3 class="darkBackdrop">Top Game Recommendation:</h3>
+            </p>
+            <p>
+            <button id="overallRecButton">PLACEHOLDER</button>
+            </p>
+        </div>
+        <div>
+            <!-- [SQUARE GRID, from left to right, top to buttom: investment (in time and mind), gameplay elements, group size overlap, thematic semblance]
+         --></div>
+        <div class="square"></div>
+        <div class="darkBackdrop whiteBox" >
+            
+            <a href="https://boardgamegeek.com/">
+                <img src="images/tabletop/BGG_logo/powered_by_BGG_02_MED.png"  style="width: 17.04rem; height:5rem"> 
+                <!-- ratio for image is 3.4074/1 (width/height) -->
+            </a>
+        </div>
+        </div>
+        
+        </center>
+        <script src="js_scripts/recommender_scoring.js"></script>
+        <script>
+            // Reveal the recommendation based on the user's selection
+            function showRecommendation(selector){// document.addEventListener('DOMContentLoaded', function() {return tagSelector})){
+                    //var selector = 
+                    var selection = getMultiSelectorSelection(selector);
+                    var result = retrieveTopResult(mainMatrix, selection);
+                   
+                    if ( (result === undefined || result.length == 0) == false ) {
+                        setTopResultOverall(selection);
+                        document.getElementById("overallRecButton").textContent = idxData['alt_title'][result];
+                        
+                    }
+
+                }
+            
+            // Run the following once the DOM is loaded
+            document.addEventListener('DOMContentLoaded', function() {
+                const idxTitles = idxData['alt_title'];
+
+                // Create the <select> element
+                const selectElement = document.createElement('select');
+                selectElement.name = 'gameOptions';
+                selectElement.id = 'gameOptions';
+                selectElement.multiple = true;
+
+                // Populate the <select> with options
+                for (const [value, label] of Object.entries(idxTitles)) {
+                    const option = document.createElement('option');
+                    option.value = value;
+                    option.textContent = label;
+                    selectElement.appendChild(option);
+                }
+
+                // Insert the <select> into the anchor
+                document.getElementById('select-anchor').appendChild(selectElement);
+
+                // Initialize the MultiSelectTag after the <select> is populated
+                var tagSelector = new MultiSelectTag('gameOptions', {
+                    maxSelection: 20,
+                    required: true,
+                    placeholder: 'Search here to select the kinds of games you enjoy (Type or scroll)',
+                    onChange: function(selected) {
+                        console.log('Selection changed:', selected);
+                    }
+
+                    
+
+                });
+
+                // add click listener to button
+                document.getElementById("userRequestBtn").addEventListener('click', () => {
+                    showRecommendation(tagSelector);
+                    if (getTopResultOverall() != -1){ 
+                        document.getElementById("overallRecommendationDiv").style.display= "inline";
+                    }
+
+                })
+
+                document.getElementById("overallRecButton").addEventListener('click', () => {
+                    getCurrentOverallPage()
+                })
+
+            });
+            
+            
+            
+
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@4.0.1/dist/js/multi-select-tag.min.js"></script>
+    </body>
+</html>
