@@ -10,11 +10,41 @@ h1, h2, h3, h4, h5, h6 {
     color: darkblue;
     font-weight: bold;
 }
+a {
+  color: white;
+}
+
+details {
+  color: white;
+  background-color: white;
+  display: none;
+}
+
 .minorHeader {
     font-size: 1.2rem;
     padding-bottom: 3.2rem;
     border-color: black;
     border-width: 0.5rem;
+}
+
+.metricHeader {
+  font-size:smaller;
+}
+
+.gridContainer {
+  
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: rgba(27, 29, 39, 0.698);
+  padding: 10px;
+}
+.gridContainer div {
+  /*color: black
+  background-color: #f1f1f1;*/
+  border: 1px solid rgb(60, 66, 66);
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
 }
 
 .darkBackdrop {
@@ -23,7 +53,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .whiteBox {
     background-color: white;
-    width: 20%;
+    width: 30%;
     border-radius: 3rem;
 }
 
@@ -43,6 +73,17 @@ h1, h2, h3, h4, h5, h6 {
     font-size: larger;
 }
 
+#sizeRanking {
+  background-color: #971b1b70;
+}
+
+#gameplayRanking {
+  background-color: rgba(0, 100, 0, 0.423);
+}
+
+#investmentRanking {
+  background-color: rgba(7, 39, 115, 0.326);
+}
 
 /*
 CSS for MultiSelectTag below

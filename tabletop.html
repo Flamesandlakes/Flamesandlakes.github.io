@@ -17,7 +17,7 @@
         <h3>Select the kinds of game(s) you enjoy or are looking for something similar to.</h3>
         
        
-        <form class="container" action="" method="get">
+        <form class="container" action="" method="get" style="font-size: 20px;">
             <div id="select-anchor"></div>
         </form>
         <div class="minorHeader", style="padding: 0.2rem;">
@@ -41,13 +41,60 @@
         </div>
         <div id="overallRecommendationDiv" style="display: none;"> 
             <p>
-            <h3 class="darkBackdrop">Top Game Recommendation:</h3>
+            <h3 class="darkBackdrop">Overall Game Recommendation:</h3>
             </p>
             <p>
             <button id="overallRecButton">PLACEHOLDER</button>
             </p>
         </div>
         <div>
+            <details id="details">
+                <summary style="font-size: 1.5rem;">Details</summary>
+                <div style="font-size: 1.4rem;">
+                    Detailed overview of how different games match in similarity to your selection.
+                    
+                </div>
+                <div class="gridContainer">
+                    
+                    <div id="sizeRanking">
+                        <b class="metricHeader">
+                            Group Size Overlap</b>
+                        <div>
+                            <div class="rankedGame"><a id="size_1">Game 1</a></div>
+                            <div class="rankedGame"><a id="size_2">Game 2</a></div>
+                            <div class="rankedGame"><a id="size_3">Game 3</a></div> 
+                            <div class="rankedGame"><a id="size_4">Game 4</a></div>
+                        </div>
+                    </div>
+                    <div id="gameplayRanking">
+                        <b class="metricHeader">Gameplay Elements</b>
+                        <div>
+                            <div class="rankedGame"><a id="gameplay_1">Game 1</a></div>
+                            <div class="rankedGame"><a id="gameplay_2">Game 2</a></div>
+                            <div class="rankedGame"><a id="gameplay_3">Game 3</a></div> 
+                            <div class="rankedGame"><a id="gameplay_4">Game 4</a></div>
+                        </div>
+                    </div>
+                    <div id="investmentRanking">
+                        <b class="metricHeader">
+                        Investment in Time and Mind
+                        </b>
+                        <div>
+                            <div class="rankedGame"><a id="investment_1">Game 1</a></div>
+                            <div class="rankedGame"><a id="investment_2">Game 2</a></div>
+                            <div class="rankedGame"><a id="investment_3">Game 3</a></div> 
+                            <div class="rankedGame"><a id="investment_4">Game 4</a></div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div>
+                    <br><b>Group Size Overlap</b>: Compatibility in the suitable number of players. Size ranges that extending below and/or higher than a 1:1 overlap are still penalized.
+                    <br><b>Gameplay Elements</b>: Genre of game and gameplay mechanics
+                    <br><b>Investment in Time and Mind</b>: Estimated play time and game complexity, i.e. how much time does a game take, and 
+                    <br><br>
+                </div>
+            </details>
             <!-- [SQUARE GRID, from left to right, top to buttom: investment (in time and mind), gameplay elements, group size overlap, thematic semblance]
          --></div>
         <div class="square"></div>
@@ -71,8 +118,31 @@
                    
                     if ( (result === undefined || result.length == 0) == false ) {
                         setTopResultOverall(selection);
-                        document.getElementById("overallRecButton").textContent = idxData['alt_title'][result];
+                        document.getElementById("overallRecButton").textContent = idxData['alt_title'][result]; // + " \u1F517";
                         
+                        if (true){
+                            for (let i = 0; i < subMatrices.length; i++) {
+                                var subResults = retrieveTop4Results(subMatrices[i], selection);
+                                    if (i == 0){
+                                        var subLabel = "gameplay";
+                                    } else if (i == 1){
+                                        var subLabel = "size";
+                                    } else {
+                                        var subLabel = "investment";
+                                    }
+                                    
+                                    for (let j = 0; j < 4; j++){
+                                        var gameIdx = subResults[j];
+                                        var rank = j + 1
+                                        var elementID = subLabel + "_" + rank.toString();
+                                        //document.getElementById(elementID).textContent = rank.toString() + ". " + idxData['alt_title'][gameIdx];
+                                        document.getElementById(elementID).textContent = idxData['alt_title'][gameIdx];
+                                        document.getElementById(elementID).href = idxData['bgg_url'][gameIdx];
+                                    }
+                            }
+                        }
+
+
                     }
 
                 }
@@ -107,8 +177,6 @@
                         console.log('Selection changed:', selected);
                     }
 
-                    
-
                 });
 
                 // add click listener to button
@@ -116,6 +184,8 @@
                     showRecommendation(tagSelector);
                     if (getTopResultOverall() != -1){ 
                         document.getElementById("overallRecommendationDiv").style.display= "inline";
+                        document.getElementById("details").style.display= "inline";
+
                     }
 
                 })
