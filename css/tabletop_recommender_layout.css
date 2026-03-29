@@ -6,16 +6,25 @@ div {
     padding: 0.005rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h2 {
+  border: 2px solid #1a1a1a;
+  border-width: 3px;
+  border-radius: 15px;
+  color: darkblue;
+  font-weight: bold;
+}
+
+h1, h3, h4, h5, h6 {
     color: darkblue;
     font-weight: bold;
 }
+
 a {
   color: white;
 }
 
 details {
-  color: white;
+  color: whitesmoke;
   background-color: white;
   display: none;
 }
@@ -32,7 +41,6 @@ details {
 }
 
 .gridContainer {
-  
   display: grid;
   grid-template-columns: auto auto auto;
   background-color: rgba(27, 29, 39, 0.698);
@@ -47,6 +55,10 @@ details {
   text-align: center;
 }
 
+.rankedGame {
+  background-color: #222222b1;
+}
+
 .darkBackdrop {
     color: #bcb9bf;
 }
@@ -55,6 +67,11 @@ details {
     background-color: white;
     width: 30%;
     border-radius: 3rem;
+}
+
+.smallSquare {
+  width: min(80%, 40rem);
+  height:6rem;
 }
 
 .square {
@@ -67,28 +84,26 @@ details {
   font-size: 1.2rem;
 }
 
-
 #overallRecButton {
     font-weight: bold;
-    font-size: larger;
+    font-size: 200%;
 }
 
-#sizeRanking {
+#sizeRanking{
   background-color: #971b1b70;
 }
 
-#gameplayRanking {
+#gameplayRanking{
   background-color: rgba(0, 100, 0, 0.423);
 }
 
-#investmentRanking {
+#investmentRanking{
   background-color: rgba(7, 39, 115, 0.326);
 }
 
 /*
 CSS for MultiSelectTag below
 */
-
 
 .multi-select-tag {
     all: revert !important;
