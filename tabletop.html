@@ -24,7 +24,7 @@
         <span> 
             <br>You may select up to 20 games, though a selection of any smaller size works as well.
             <br>Note: Current available assortment of games may be biased and/or limited. 
-            Selecting nothing will give you the first game according to alphabetic order by default.
+            <!--Selecting nothing will give you the first game according to alphabetic order by default.-->
             <br><br>
         </span>
         </div>
@@ -46,6 +46,9 @@
             <p>
             <button id="overallRecButton">PLACEHOLDER</button>
             </p>
+            <p>
+            <h4 class="darkBackdrop">Click on the game's title to learn more about it!</h4>
+            </p>
         </div>
         <div>
             <details id="details">
@@ -64,6 +67,7 @@
                             <div class="rankedGame"><a id="size_2">Game 2</a></div>
                             <div class="rankedGame"><a id="size_3">Game 3</a></div> 
                             <div class="rankedGame"><a id="size_4">Game 4</a></div>
+                            <div class="rankedGame"><a id="size_5">Game 5</a></div>
                         </div>
                     </div>
                     <div id="gameplayRanking">
@@ -73,6 +77,7 @@
                             <div class="rankedGame"><a id="gameplay_2">Game 2</a></div>
                             <div class="rankedGame"><a id="gameplay_3">Game 3</a></div> 
                             <div class="rankedGame"><a id="gameplay_4">Game 4</a></div>
+                            <div class="rankedGame"><a id="gameplay_5">Game 5</a></div>
                         </div>
                     </div>
                     <div id="investmentRanking">
@@ -84,6 +89,7 @@
                             <div class="rankedGame"><a id="investment_2">Game 2</a></div>
                             <div class="rankedGame"><a id="investment_3">Game 3</a></div> 
                             <div class="rankedGame"><a id="investment_4">Game 4</a></div>
+                            <div class="rankedGame"><a id="investment_5">Game 5</a></div>
                         </div>
                     </div>
                     
@@ -93,6 +99,40 @@
                     <br><b>Gameplay Elements</b>: Genre of game and gameplay mechanics
                     <br><b>Investment in Time and Mind</b>: Estimated play time and game complexity, i.e. how much time does a game take, and how difficult it is to learn and master.
                     <br><br>
+                </div>
+                
+
+            </details>
+            <div>
+                    <br>
+                    <br>
+                </div>
+
+            <details id = "top10">
+                <summary style="font-size: 1.5rem;">Top 10 Recommendations</summary>
+                <div style="font-size: 1.4rem;">
+                    Top 10 overall most similar games to your selection.
+                </div>
+
+                <div class="soloColumn">
+                    <div class ="rowWrapper">
+                            <div class="topRankedGame"><a id="overall_1">Game 1</a></div>
+                            <div class="topRankedGame"><a id="overall_2">Game 2</a></div>
+                            <div class="topRankedGame"><a id="overall_3">Game 3</a></div> 
+                            <div class="topRankedGame"><a id="overall_4">Game 4</a></div>
+                            <div class="topRankedGame"><a id="overall_5">Game 5</a></div>
+                            <div class="topRankedGame"><a id="overall_6">Game 6</a></div>
+                            <div class="topRankedGame"><a id="overall_7">Game 7</a></div>
+                            <div class="topRankedGame"><a id="overall_8">Game 8</a></div> 
+                            <div class="topRankedGame"><a id="overall_9">Game 9</a></div>
+                            <div class="topRankedGame"><a id="overall_10">Game 10</a></div>
+                        </div>
+                </div>
+                <br>
+                <div>
+                    The overall top results are based on an aggregate of weighted scores consisting of  <br>
+                    Group Size Overlay, Gameplay Elements, Investment in Time and Mind, <br>
+                    Thematic Semblance, Language Dependency, and Maturity Level.  
                 </div>
             </details>
             <!-- [SQUARE GRID, from left to right, top to buttom: investment (in time and mind), gameplay elements, group size overlap, thematic semblance]
@@ -116,13 +156,13 @@
                     var selection = getMultiSelectorSelection(selector);
                     var result = retrieveTopResult(mainMatrix, selection);
                    
-                    if ( (result === undefined || result.length == 0) == false ) {
+                    if ( (result === undefined || selection.length == 0) == false ) {
                         setTopResultOverall(selection);
                         document.getElementById("overallRecButton").textContent = idxData['alt_title'][result]; // + " \u1F517";
                         
                         if (true){
                             for (let i = 0; i < subMatrices.length; i++) {
-                                var subResults = retrieveTop4Results(subMatrices[i], selection);
+                                var subResults = retrieveTopNResults(subMatrices[i], selection, 5);
                                     if (i == 0){
                                         var subLabel = "gameplay";
                                     } else if (i == 1){
@@ -131,7 +171,7 @@
                                         var subLabel = "investment";
                                     }
                                     
-                                    for (let j = 0; j < 4; j++){
+                                    for (let j = 0; j < 5; j++){
                                         var gameIdx = subResults[j];
                                         var rank = j + 1
                                         var elementID = subLabel + "_" + rank.toString();
@@ -140,6 +180,20 @@
                                         document.getElementById(elementID).href = idxData['bgg_url'][gameIdx];
                                     }
                             }
+                        }
+                        if (true){
+                            
+                            var topResults = retrieveTopNResults(mainMatrix, selection, 10);
+                                
+                                for (let j = 0; j < 10; j++){
+                                    var gameIdx = topResults[j];
+                                    var rank = j + 1
+                                    var elementID = "overall" + "_" + rank.toString();
+                                    //document.getElementById(elementID).textContent = rank.toString() + ". " + idxData['alt_title'][gameIdx];
+                                    document.getElementById(elementID).textContent = idxData['alt_title'][gameIdx];
+                                    document.getElementById(elementID).href = idxData['bgg_url'][gameIdx];
+                                }
+                            
                         }
 
 
@@ -185,6 +239,7 @@
                     if (getTopResultOverall() != -1){ 
                         document.getElementById("overallRecommendationDiv").style.display= "inline";
                         document.getElementById("details").style.display= "inline";
+                        document.getElementById("top10").style.display= "inline";
 
                     }
 

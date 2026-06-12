@@ -29,6 +29,14 @@ details {
   display: none;
 }
 
+details .soloColumn{
+  color: black;
+  background-color: white;
+  
+}
+
+
+
 .minorHeader {
     font-size: 1.2rem;
     padding-bottom: 3.2rem;
@@ -45,6 +53,7 @@ details {
   grid-template-columns: auto auto auto;
   background-color: rgba(27, 29, 39, 0.698);
   padding: 10px;
+  
 }
 .gridContainer div {
   /*color: black
@@ -55,8 +64,45 @@ details {
   text-align: center;
 }
 
+.soloColumn {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-column-start: center;
+  padding: 10px;
+  min-width: 50%;
+  max-width: 300px;
+  
+}
+
+.soloColumn div {
+  border: 1px solid rgb(60, 66, 66);
+  background-color: rgba(245, 245, 245, 0.663);
+  padding: 10px;
+  font-size: 32px;
+}
+.soloColumn a {
+  color: black;
+  font-weight: bold;
+}
+.soloColumn a:link {
+  text-decoration: none;
+}
+
 .rankedGame {
   background-color: #222222b1;
+}
+
+.topRankedGame {
+  background-color: #f5f0f0da;
+}
+
+.rowWrapper > div:nth-child(odd) {
+  background: linear-gradient(0deg, #fafafa, #e1e1e1)
+}
+
+.rowWrapper > div:nth-child(even)
+{
+  background: linear-gradient(180deg, #fafafa, #e1e1e1)
 }
 
 .darkBackdrop {
@@ -68,6 +114,8 @@ details {
     width: 30%;
     border-radius: 3rem;
 }
+
+
 
 .smallSquare {
   width: min(80%, 40rem);
