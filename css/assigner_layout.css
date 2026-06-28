@@ -1,0 +1,225 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f9;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+h2 {
+    margin-top: 0;
+    color: #444;
+}
+
+.color-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.color-options label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+.color-options input[type="checkbox"] {
+    margin: 0;
+}
+
+.player-names-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.player-input {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-right: 15px;
+}
+
+.player-input input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.stages-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.stage {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.stage h3 {
+    margin-top: 0;
+    color: #555;
+}
+
+.item-input {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.item-input input[type="text"] {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.item-input button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.item-input button:hover {
+    background-color: #45a049;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    background-color: #e9e9e9;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+
+ul li button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 2px 6px;
+    cursor: pointer;
+}
+
+ul li button:hover {
+    background-color: #d32f2f;
+}
+
+#assign-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#assign-button:hover {
+    background-color: #0b7dda;
+}
+
+#results-table-container {
+    overflow-x: auto;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.results-table tr {
+    margin-bottom: 15px;
+    background-color: #fff;
+    
+}
+
+.results-table th,
+.results-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.results-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.results-table tr:first-child th {
+    background-color: #e0e0e0;
+}
+
+/* Dynamic column coloring */
+.colored-column {
+    position: relative;
+}
+
+.colored-column::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 3px solid;
+    border-radius: 4px;
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
+/* Specific column colors */
+.colored-column.Blue::before { border-color: blue; }
+.colored-column.Green::before { border-color: green; }
+.colored-column.Pink::before { border-color: pink; }
+.colored-column.Purple::before { border-color: purple; }
+.colored-column.Orange::before { border-color: orange; }
+.colored-column.Black::before { border-color: black; }
+.colored-column.White::before { border-color: white; }
+.colored-column.Gray::before { border-color: gray; }
+.colored-column.Brown::before { border-color: brown; }
+.colored-column.Red::before { border-color: red; }
+.colored-column.Yellow::before { border-color: yellow; }
+.colored-column.Light_green::before { border-color: lightgreen; }
